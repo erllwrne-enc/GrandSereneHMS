@@ -17,6 +17,9 @@ namespace HotelGrandSerene.DashboardModule.UserControlNavigation
         public ucDashboard()
         {
             InitializeComponent();
+            guna2Button1.Click += btnNewcheckin_Click;                          // "Confirm Check-in" card button
+            guna2Button2.Click += (s, e) => ShowModal(new frmCheckout());       // "Confirm Check-out" card button
+            guna2Button3.Click += (s, e) => ShowModal(new frmCheckout());       // "Find Control Number" button
         }
 
         private void ucDashboard_Load(object sender, EventArgs e)
@@ -142,36 +145,6 @@ namespace HotelGrandSerene.DashboardModule.UserControlNavigation
 
         #region --- 3. Modal Popup Handler ---
 
-        private void btnNewcheckin_Click(object sender, EventArgs e)
-        {
-            // Create dim overlay form
-            Form overlay = new Form
-            {
-                FormBorderStyle = FormBorderStyle.None,
-                BackColor = Color.Black,
-                Opacity = 0.50,
-                ShowInTaskbar = false,
-                StartPosition = FormStartPosition.Manual
-            };
-
-            Form mainForm = this.FindForm();
-            if (mainForm != null)
-            {
-                overlay.Size = mainForm.Size;
-                overlay.Location = mainForm.Location;
-                overlay.Show(mainForm);
-            }
-
-            // Open rounded modal dialog
-            using (frmNewCheckin modal = new frmNewCheckin())
-            {
-                modal.ShowDialog(overlay.Visible ? overlay : (IWin32Window)this);
-            }
-
-            // Remove overlay when closed
-            overlay.Dispose();
-        }
-
         #endregion
 
         #region --- Designer Placeholders & Event Redirects ---
@@ -192,5 +165,41 @@ namespace HotelGrandSerene.DashboardModule.UserControlNavigation
         private void pnlSparkline_Click(object sender, EventArgs e) { }
 
         #endregion
+
+        private void btnNewcheckin_Click(object sender, EventArgs e)
+        {
+            ShowModal(new frmNewCheckin());
+        }
+
+        private void ShowModal(Form dialog)
+        {
+            // Dim overlay behind the dialog (same look as the reservation windows)
+            Form overlay = new Form
+            {
+                FormBorderStyle = FormBorderStyle.None,
+                BackColor = Color.Black,
+                Opacity = 0.50,
+                ShowInTaskbar = false,
+                StartPosition = FormStartPosition.Manual
+            };
+
+            Form mainForm = this.FindForm();
+            if (mainForm != null)
+            {
+                overlay.Size = mainForm.Size;
+                overlay.Location = mainForm.Location;
+                overlay.Show(mainForm);
+            }
+
+            try
+            {
+                dialog.ShowDialog(overlay.Visible ? overlay : (IWin32Window)this);
+            }
+            finally
+            {
+                dialog.Dispose();
+                overlay.Dispose();
+            }
+        }
     }
 }

@@ -45,10 +45,7 @@ namespace HotelGrandSerene.StaffModule.ModalPopup
             if (cmbRole != null)
             {
                 cmbRole.Items.Clear();
-                cmbRole.Items.Add("Receptionist");
-                cmbRole.Items.Add("Housekeeping");
-                cmbRole.Items.Add("Manager");
-                cmbRole.Items.Add("Super Admin");
+                foreach (string r in Roles.All) cmbRole.Items.Add(r);
             }
 
             // Populate Account Status ComboBox
@@ -175,7 +172,7 @@ namespace HotelGrandSerene.StaffModule.ModalPopup
             string firstName = txtFirstName.Text.Trim();
             string lastName = txtLastName.Text.Trim();
             string username = txtUsername.Text.Trim();
-            string selectedRole = cmbRole.SelectedItem?.ToString() ?? "Receptionist";
+            string selectedRole = cmbRole.SelectedItem?.ToString() ?? Roles.FrontDesk;
             bool isActive = (cmbAccountStatus.SelectedItem?.ToString() ?? "Active")
                                 .Equals("Active", StringComparison.OrdinalIgnoreCase);
             bool changePassword = !string.IsNullOrWhiteSpace(txtNewPassword.Text);

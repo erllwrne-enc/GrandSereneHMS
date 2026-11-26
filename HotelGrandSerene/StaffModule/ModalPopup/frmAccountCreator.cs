@@ -11,17 +11,20 @@ namespace HotelGrandSerene.StaffModule.ModalPopup
         public frmAccountCreator()
         {
             InitializeComponent();
+            this.Load += frmAccountCreator_Load;     // <-- the missing connection
         }
 
         private void frmAccountCreator_Load(object sender, EventArgs e)
         {
-            // 1. Lock Username field
-            txtUsername.ReadOnly = false ;
+            // The designer disables the username box; turn it on. @staffN is only a suggestion.
+            txtUsername.Enabled = true;
+            txtUsername.ReadOnly = false;
 
-            // 2. Set default index selections using String Collection Editor items
-            SetDefaultComboBoxSelections();
+            cmbRole.Items.Clear();
+            foreach (string r in Roles.All) cmbRole.Items.Add(r);
+            cmbRole.SelectedIndex = 0;                                                  // Front Desk
+            if (cmbAccountStatus.Items.Count > 0) cmbAccountStatus.SelectedIndex = 0;   // Active
 
-            // 3. Auto-generate next username (@staff1, @staff2, etc.) and pre-fill default password
             txtUsername.Text = GetNextUsernamePreview();
             txtNewPassword.Text = "Testing";
             txtNewPassword.UseSystemPasswordChar = false;
@@ -70,7 +73,7 @@ namespace HotelGrandSerene.StaffModule.ModalPopup
             string lastName = txtLastName.Text.Trim();
             string contactNumber = txtContactNumber.Text.Trim();
             string rawPassword = string.IsNullOrWhiteSpace(txtNewPassword.Text) ? "Testing" : txtNewPassword.Text.Trim();
-            string role = cmbRole.SelectedItem?.ToString() ?? "Receptionist";
+            string role = cmbRole.SelectedItem?.ToString() ?? Roles.FrontDesk;
             string statusStr = cmbAccountStatus.SelectedItem?.ToString() ?? "Active";
             bool isActive = statusStr.Equals("Active", StringComparison.OrdinalIgnoreCase);
 

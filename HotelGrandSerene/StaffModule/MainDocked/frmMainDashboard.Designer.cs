@@ -65,7 +65,7 @@
             this.pnlDashmain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlDashmain.FillColor = System.Drawing.Color.SeaShell;
             this.pnlDashmain.Location = new System.Drawing.Point(254, 105);
-            this.pnlDashmain.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlDashmain.Margin = new System.Windows.Forms.Padding(2);
             this.pnlDashmain.Name = "pnlDashmain";
             this.pnlDashmain.ShadowDecoration.BorderRadius = 10;
             this.pnlDashmain.ShadowDecoration.Color = System.Drawing.SystemColors.ControlDarkDark;
@@ -90,7 +90,7 @@
             this.pnlToppanel.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(1)))), ((int)(((byte)(101)))));
             this.pnlToppanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(1)))), ((int)(((byte)(101)))));
             this.pnlToppanel.Location = new System.Drawing.Point(0, 0);
-            this.pnlToppanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlToppanel.Margin = new System.Windows.Forms.Padding(2);
             this.pnlToppanel.Name = "pnlToppanel";
             this.pnlToppanel.ShadowDecoration.BorderRadius = 5;
             this.pnlToppanel.ShadowDecoration.Enabled = true;
@@ -103,7 +103,7 @@
             this.guna2PictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.guna2PictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("guna2PictureBox1.Image")));
             this.guna2PictureBox1.Location = new System.Drawing.Point(31, -12);
-            this.guna2PictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2PictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.guna2PictureBox1.Name = "guna2PictureBox1";
             this.guna2PictureBox1.ShadowDecoration.Parent = this.guna2PictureBox1;
             this.guna2PictureBox1.Size = new System.Drawing.Size(101, 98);
@@ -117,7 +117,7 @@
             this.picProfile.BackColor = System.Drawing.Color.Transparent;
             this.picProfile.FillColor = System.Drawing.Color.White;
             this.picProfile.Location = new System.Drawing.Point(1324, 34);
-            this.picProfile.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.picProfile.Margin = new System.Windows.Forms.Padding(2);
             this.picProfile.Name = "picProfile";
             this.picProfile.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.picProfile.ShadowDecoration.Parent = this.picProfile;
@@ -132,7 +132,7 @@
             this.PicNotif.BackColor = System.Drawing.Color.Transparent;
             this.PicNotif.Image = ((System.Drawing.Image)(resources.GetObject("PicNotif.Image")));
             this.PicNotif.Location = new System.Drawing.Point(1256, 34);
-            this.PicNotif.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PicNotif.Margin = new System.Windows.Forms.Padding(2);
             this.PicNotif.Name = "PicNotif";
             this.PicNotif.ShadowDecoration.Parent = this.PicNotif;
             this.PicNotif.Size = new System.Drawing.Size(31, 32);
@@ -155,7 +155,7 @@
             this.btnNewReservation.Image = ((System.Drawing.Image)(resources.GetObject("btnNewReservation.Image")));
             this.btnNewReservation.ImageOffset = new System.Drawing.Point(-4, 0);
             this.btnNewReservation.Location = new System.Drawing.Point(1053, 34);
-            this.btnNewReservation.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnNewReservation.Margin = new System.Windows.Forms.Padding(2);
             this.btnNewReservation.Name = "btnNewReservation";
             this.btnNewReservation.ShadowDecoration.Parent = this.btnNewReservation;
             this.btnNewReservation.Size = new System.Drawing.Size(168, 32);
@@ -170,7 +170,7 @@
             this.guna2HtmlLabel2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel2.ForeColor = System.Drawing.Color.White;
             this.guna2HtmlLabel2.Location = new System.Drawing.Point(146, 57);
-            this.guna2HtmlLabel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2HtmlLabel2.Margin = new System.Windows.Forms.Padding(2);
             this.guna2HtmlLabel2.Name = "guna2HtmlLabel2";
             this.guna2HtmlLabel2.Size = new System.Drawing.Size(39, 17);
             this.guna2HtmlLabel2.TabIndex = 1;
@@ -183,7 +183,7 @@
             this.guna2HtmlLabel1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel1.ForeColor = System.Drawing.Color.White;
             this.guna2HtmlLabel1.Location = new System.Drawing.Point(146, 34);
-            this.guna2HtmlLabel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2HtmlLabel1.Margin = new System.Windows.Forms.Padding(2);
             this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
             this.guna2HtmlLabel1.Size = new System.Drawing.Size(91, 17);
             this.guna2HtmlLabel1.TabIndex = 0;
@@ -195,7 +195,7 @@
             this.lblCurrentDate.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCurrentDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(1)))), ((int)(((byte)(101)))));
             this.lblCurrentDate.Location = new System.Drawing.Point(22, 81);
-            this.lblCurrentDate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lblCurrentDate.Margin = new System.Windows.Forms.Padding(2);
             this.lblCurrentDate.Name = "lblCurrentDate";
             this.lblCurrentDate.Size = new System.Drawing.Size(101, 17);
             this.lblCurrentDate.TabIndex = 2;
@@ -208,7 +208,7 @@
             this.guna2HtmlLabel3.Font = new System.Drawing.Font("Bodoni MT", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(1)))), ((int)(((byte)(101)))));
             this.guna2HtmlLabel3.Location = new System.Drawing.Point(36, 46);
-            this.guna2HtmlLabel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2HtmlLabel3.Margin = new System.Windows.Forms.Padding(2);
             this.guna2HtmlLabel3.Name = "guna2HtmlLabel3";
             this.guna2HtmlLabel3.Size = new System.Drawing.Size(178, 30);
             this.guna2HtmlLabel3.TabIndex = 1;
@@ -231,9 +231,9 @@
             this.pnlLeftpanel.Controls.Add(this.btnDashboard);
             this.pnlLeftpanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlLeftpanel.Location = new System.Drawing.Point(0, 105);
-            this.pnlLeftpanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlLeftpanel.Margin = new System.Windows.Forms.Padding(2);
             this.pnlLeftpanel.Name = "pnlLeftpanel";
-            this.pnlLeftpanel.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlLeftpanel.Padding = new System.Windows.Forms.Padding(2);
             this.pnlLeftpanel.ShadowDecoration.BorderRadius = 20;
             this.pnlLeftpanel.ShadowDecoration.Enabled = true;
             this.pnlLeftpanel.ShadowDecoration.Parent = this.pnlLeftpanel;
@@ -259,12 +259,12 @@
             this.btnSuperAdmin.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnSuperAdmin.ImageSize = new System.Drawing.Size(25, 25);
             this.btnSuperAdmin.Location = new System.Drawing.Point(16, 575);
-            this.btnSuperAdmin.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSuperAdmin.Margin = new System.Windows.Forms.Padding(2);
             this.btnSuperAdmin.Name = "btnSuperAdmin";
             this.btnSuperAdmin.ShadowDecoration.Parent = this.btnSuperAdmin;
             this.btnSuperAdmin.Size = new System.Drawing.Size(220, 54);
             this.btnSuperAdmin.TabIndex = 8;
-            this.btnSuperAdmin.Text = "Super Admin";
+            this.btnSuperAdmin.Text = "Staff Management";
             this.btnSuperAdmin.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnSuperAdmin.TextOffset = new System.Drawing.Point(15, 0);
             this.btnSuperAdmin.Click += new System.EventHandler(this.btnSuperAdmin_Click);
@@ -286,7 +286,7 @@
             this.btnStaff.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnStaff.ImageSize = new System.Drawing.Size(25, 25);
             this.btnStaff.Location = new System.Drawing.Point(16, 513);
-            this.btnStaff.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnStaff.Margin = new System.Windows.Forms.Padding(2);
             this.btnStaff.Name = "btnStaff";
             this.btnStaff.ShadowDecoration.Parent = this.btnStaff;
             this.btnStaff.Size = new System.Drawing.Size(220, 54);
@@ -313,7 +313,7 @@
             this.btnFinance.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnFinance.ImageSize = new System.Drawing.Size(25, 25);
             this.btnFinance.Location = new System.Drawing.Point(16, 436);
-            this.btnFinance.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnFinance.Margin = new System.Windows.Forms.Padding(2);
             this.btnFinance.Name = "btnFinance";
             this.btnFinance.ShadowDecoration.Parent = this.btnFinance;
             this.btnFinance.Size = new System.Drawing.Size(220, 54);
@@ -340,7 +340,7 @@
             this.btnGuests.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnGuests.ImageSize = new System.Drawing.Size(25, 25);
             this.btnGuests.Location = new System.Drawing.Point(16, 364);
-            this.btnGuests.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnGuests.Margin = new System.Windows.Forms.Padding(2);
             this.btnGuests.Name = "btnGuests";
             this.btnGuests.ShadowDecoration.Parent = this.btnGuests;
             this.btnGuests.Size = new System.Drawing.Size(220, 54);
@@ -367,7 +367,7 @@
             this.btnRooms.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnRooms.ImageSize = new System.Drawing.Size(25, 25);
             this.btnRooms.Location = new System.Drawing.Point(16, 290);
-            this.btnRooms.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnRooms.Margin = new System.Windows.Forms.Padding(2);
             this.btnRooms.Name = "btnRooms";
             this.btnRooms.ShadowDecoration.Parent = this.btnRooms;
             this.btnRooms.Size = new System.Drawing.Size(220, 54);
@@ -394,7 +394,7 @@
             this.btnReservation.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnReservation.ImageSize = new System.Drawing.Size(25, 25);
             this.btnReservation.Location = new System.Drawing.Point(16, 221);
-            this.btnReservation.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnReservation.Margin = new System.Windows.Forms.Padding(2);
             this.btnReservation.Name = "btnReservation";
             this.btnReservation.ShadowDecoration.Parent = this.btnReservation;
             this.btnReservation.Size = new System.Drawing.Size(220, 54);
@@ -422,7 +422,7 @@
             this.btnDashboard.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnDashboard.ImageSize = new System.Drawing.Size(25, 25);
             this.btnDashboard.Location = new System.Drawing.Point(16, 150);
-            this.btnDashboard.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDashboard.Margin = new System.Windows.Forms.Padding(2);
             this.btnDashboard.Name = "btnDashboard";
             this.btnDashboard.ShadowDecoration.Parent = this.btnDashboard;
             this.btnDashboard.Size = new System.Drawing.Size(220, 54);
@@ -459,7 +459,7 @@
             this.Controls.Add(this.pnlLeftpanel);
             this.Controls.Add(this.pnlToppanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmMainDashboard";
             this.Text = "frmMainDashboard";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

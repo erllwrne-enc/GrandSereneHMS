@@ -89,7 +89,8 @@ namespace GrandSereneHotel.LoginModule
                 {
                     connection.Open();
                     using (SqlCommand command = new SqlCommand(
-                        "SELECT Password, IsActive FROM EMPLOYEE WHERE Username = @Username", connection))
+                        @"SELECT EmployeeID, FirstName, LastName, Role, Password, IsActive
+                  FROM EMPLOYEE WHERE Username = @Username", connection))
                     {
                         command.Parameters.AddWithValue("@Username", username);
 
@@ -97,8 +98,11 @@ namespace GrandSereneHotel.LoginModule
                         {
                             if (!reader.Read()) return false;
 
-                            string storedHash = reader.GetString(0);
-                            bool isActive = reader.GetBoolean(1);
+                            int id = reader.GetInt32(0);
+                            string fullName = reader.GetString(1) + " " + reader.GetString(2);
+                            string role = reader.GetString(3);
+                            string storedHash = reader.GetString(4);
+                            bool isActive = reader.GetBoolean(5);
 
                             if (!PasswordHelper.VerifyPassword(password, storedHash)) return false;
 
@@ -107,6 +111,10 @@ namespace GrandSereneHotel.LoginModule
                                 error = "This account has been deactivated. Please contact an administrator.";
                                 return false;
                             }
+
+                            CurrentUser.EmployeeId = id;
+                            CurrentUser.FullName = fullName;
+                            CurrentUser.Role = role;
                             return true;
                         }
                     }
