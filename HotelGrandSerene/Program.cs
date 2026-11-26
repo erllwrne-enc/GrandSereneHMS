@@ -30,9 +30,9 @@ namespace HotelGrandSerene
 #endif
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(true);
-             Application.Run(new frmAdministratorInitialize());
-             Application.Run(new frmLogin());
-            //Application.Run(new frmCustomerModule());
+            // Application.Run(new frmAdministratorInitialize());
+             //Application.Run(new frmLogin());
+            Application.Run(new frmCustomerModule());
             //  Application.Run(new frmMainDashboard());
 
 

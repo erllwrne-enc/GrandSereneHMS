@@ -41,6 +41,7 @@
             this.lblCheckout = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblCheckin = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.PnlFirstRoom = new Guna.UI2.WinForms.Guna2Panel();
+            this.lblAvailable1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblDescrip7 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblDescrip6 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblDescrip5 = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -53,6 +54,7 @@
             this.lblAmount1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblSereneKing = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.PnlSecondRoom = new Guna.UI2.WinForms.Guna2Panel();
+            this.lblAvailable2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblDescrip14 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblDescrip16 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblDescrip15 = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -67,6 +69,7 @@
             this.lblGrandDeluxe = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblAmount2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.PnlThirdRoom = new Guna.UI2.WinForms.Guna2Panel();
+            this.lblAvailable3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblDescrip25 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblDescrip27 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblDescrip26 = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -84,6 +87,7 @@
             this.lblSereneSuite = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             this.PnlFourthRoom = new Guna.UI2.WinForms.Guna2Panel();
+            this.lblAvailable4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblDescrip40 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblDescrip39 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblDescrip38 = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -251,6 +255,7 @@
             this.PnlFirstRoom.BorderColor = System.Drawing.Color.Navy;
             this.PnlFirstRoom.BorderRadius = 20;
             this.PnlFirstRoom.BorderThickness = 1;
+            this.PnlFirstRoom.Controls.Add(this.lblAvailable1);
             this.PnlFirstRoom.Controls.Add(this.lblDescrip7);
             this.PnlFirstRoom.Controls.Add(this.lblDescrip6);
             this.PnlFirstRoom.Controls.Add(this.lblDescrip5);
@@ -268,6 +273,17 @@
             this.PnlFirstRoom.ShadowDecoration.Parent = this.PnlFirstRoom;
             this.PnlFirstRoom.Size = new System.Drawing.Size(678, 487);
             this.PnlFirstRoom.TabIndex = 3;
+            // 
+            // lblAvailable1
+            // 
+            this.lblAvailable1.BackColor = System.Drawing.Color.Transparent;
+            this.lblAvailable1.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAvailable1.ForeColor = System.Drawing.Color.Green;
+            this.lblAvailable1.Location = new System.Drawing.Point(196, 319);
+            this.lblAvailable1.Name = "lblAvailable1";
+            this.lblAvailable1.Size = new System.Drawing.Size(107, 19);
+            this.lblAvailable1.TabIndex = 11;
+            this.lblAvailable1.Text = "0 rooms available";
             // 
             // lblDescrip7
             // 
@@ -371,13 +387,14 @@
             this.BtnRoom1.Size = new System.Drawing.Size(631, 49);
             this.BtnRoom1.TabIndex = 0;
             this.BtnRoom1.Text = "Select this room";
+            this.BtnRoom1.Click += new System.EventHandler(this.BtnRoom1_Click);
             // 
             // lblAmount1
             // 
             this.lblAmount1.BackColor = System.Drawing.Color.Transparent;
             this.lblAmount1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAmount1.ForeColor = System.Drawing.Color.Navy;
-            this.lblAmount1.Location = new System.Drawing.Point(583, 276);
+            this.lblAmount1.Location = new System.Drawing.Point(523, 277);
             this.lblAmount1.Name = "lblAmount1";
             this.lblAmount1.Size = new System.Drawing.Size(73, 43);
             this.lblAmount1.TabIndex = 4;
@@ -400,6 +417,7 @@
             this.PnlSecondRoom.BorderColor = System.Drawing.Color.Navy;
             this.PnlSecondRoom.BorderRadius = 20;
             this.PnlSecondRoom.BorderThickness = 1;
+            this.PnlSecondRoom.Controls.Add(this.lblAvailable2);
             this.PnlSecondRoom.Controls.Add(this.lblDescrip14);
             this.PnlSecondRoom.Controls.Add(this.lblDescrip16);
             this.PnlSecondRoom.Controls.Add(this.lblDescrip15);
@@ -419,6 +437,17 @@
             this.PnlSecondRoom.ShadowDecoration.Parent = this.PnlSecondRoom;
             this.PnlSecondRoom.Size = new System.Drawing.Size(678, 487);
             this.PnlSecondRoom.TabIndex = 4;
+            // 
+            // lblAvailable2
+            // 
+            this.lblAvailable2.BackColor = System.Drawing.Color.Transparent;
+            this.lblAvailable2.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAvailable2.ForeColor = System.Drawing.Color.Green;
+            this.lblAvailable2.Location = new System.Drawing.Point(214, 319);
+            this.lblAvailable2.Name = "lblAvailable2";
+            this.lblAvailable2.Size = new System.Drawing.Size(107, 19);
+            this.lblAvailable2.TabIndex = 12;
+            this.lblAvailable2.Text = "0 rooms available";
             // 
             // lblDescrip14
             // 
@@ -542,6 +571,7 @@
             this.BtnRoom2.Size = new System.Drawing.Size(631, 49);
             this.BtnRoom2.TabIndex = 0;
             this.BtnRoom2.Text = "Select this room";
+            this.BtnRoom2.Click += new System.EventHandler(this.BtnRoom2_Click);
             // 
             // lblGrandDeluxe
             // 
@@ -559,7 +589,7 @@
             this.lblAmount2.BackColor = System.Drawing.Color.Transparent;
             this.lblAmount2.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAmount2.ForeColor = System.Drawing.Color.Navy;
-            this.lblAmount2.Location = new System.Drawing.Point(585, 277);
+            this.lblAmount2.Location = new System.Drawing.Point(523, 277);
             this.lblAmount2.Name = "lblAmount2";
             this.lblAmount2.Size = new System.Drawing.Size(73, 43);
             this.lblAmount2.TabIndex = 5;
@@ -571,6 +601,7 @@
             this.PnlThirdRoom.BorderColor = System.Drawing.Color.Navy;
             this.PnlThirdRoom.BorderRadius = 20;
             this.PnlThirdRoom.BorderThickness = 1;
+            this.PnlThirdRoom.Controls.Add(this.lblAvailable3);
             this.PnlThirdRoom.Controls.Add(this.lblDescrip25);
             this.PnlThirdRoom.Controls.Add(this.lblDescrip27);
             this.PnlThirdRoom.Controls.Add(this.lblDescrip26);
@@ -592,6 +623,17 @@
             this.PnlThirdRoom.ShadowDecoration.Parent = this.PnlThirdRoom;
             this.PnlThirdRoom.Size = new System.Drawing.Size(678, 487);
             this.PnlThirdRoom.TabIndex = 5;
+            // 
+            // lblAvailable3
+            // 
+            this.lblAvailable3.BackColor = System.Drawing.Color.Transparent;
+            this.lblAvailable3.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAvailable3.ForeColor = System.Drawing.Color.Green;
+            this.lblAvailable3.Location = new System.Drawing.Point(248, 319);
+            this.lblAvailable3.Name = "lblAvailable3";
+            this.lblAvailable3.Size = new System.Drawing.Size(107, 19);
+            this.lblAvailable3.TabIndex = 13;
+            this.lblAvailable3.Text = "0 rooms available";
             // 
             // lblDescrip25
             // 
@@ -641,6 +683,7 @@
             this.BtnRoom3.Size = new System.Drawing.Size(631, 49);
             this.BtnRoom3.TabIndex = 11;
             this.BtnRoom3.Text = "Select this room";
+            this.BtnRoom3.Click += new System.EventHandler(this.BtnRoom3_Click);
             // 
             // lblDescrip24
             // 
@@ -739,7 +782,7 @@
             this.lblAmount3.BackColor = System.Drawing.Color.Transparent;
             this.lblAmount3.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAmount3.ForeColor = System.Drawing.Color.Navy;
-            this.lblAmount3.Location = new System.Drawing.Point(583, 275);
+            this.lblAmount3.Location = new System.Drawing.Point(523, 275);
             this.lblAmount3.Name = "lblAmount3";
             this.lblAmount3.Size = new System.Drawing.Size(73, 43);
             this.lblAmount3.TabIndex = 3;
@@ -769,6 +812,7 @@
             this.PnlFourthRoom.BorderColor = System.Drawing.Color.Navy;
             this.PnlFourthRoom.BorderRadius = 20;
             this.PnlFourthRoom.BorderThickness = 1;
+            this.PnlFourthRoom.Controls.Add(this.lblAvailable4);
             this.PnlFourthRoom.Controls.Add(this.lblDescrip40);
             this.PnlFourthRoom.Controls.Add(this.lblDescrip39);
             this.PnlFourthRoom.Controls.Add(this.lblDescrip38);
@@ -792,6 +836,17 @@
             this.PnlFourthRoom.ShadowDecoration.Parent = this.PnlFourthRoom;
             this.PnlFourthRoom.Size = new System.Drawing.Size(678, 487);
             this.PnlFourthRoom.TabIndex = 7;
+            // 
+            // lblAvailable4
+            // 
+            this.lblAvailable4.BackColor = System.Drawing.Color.Transparent;
+            this.lblAvailable4.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAvailable4.ForeColor = System.Drawing.Color.Green;
+            this.lblAvailable4.Location = new System.Drawing.Point(244, 318);
+            this.lblAvailable4.Name = "lblAvailable4";
+            this.lblAvailable4.Size = new System.Drawing.Size(107, 19);
+            this.lblAvailable4.TabIndex = 15;
+            this.lblAvailable4.Text = "0 rooms available";
             // 
             // lblDescrip40
             // 
@@ -880,6 +935,7 @@
             this.BtnRoom4.Size = new System.Drawing.Size(631, 49);
             this.BtnRoom4.TabIndex = 9;
             this.BtnRoom4.Text = "Select this room";
+            this.BtnRoom4.Click += new System.EventHandler(this.BtnRoom4_Click);
             // 
             // lblDescrip33
             // 
@@ -970,7 +1026,7 @@
             this.lblAmount4.BackColor = System.Drawing.Color.Transparent;
             this.lblAmount4.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAmount4.ForeColor = System.Drawing.Color.Navy;
-            this.lblAmount4.Location = new System.Drawing.Point(579, 275);
+            this.lblAmount4.Location = new System.Drawing.Point(517, 275);
             this.lblAmount4.Name = "lblAmount4";
             this.lblAmount4.Size = new System.Drawing.Size(73, 43);
             this.lblAmount4.TabIndex = 3;
@@ -990,6 +1046,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.SeaShell;
             this.Controls.Add(this.lblDescription);
             this.Controls.Add(this.PnlFourthRoom);
@@ -1097,5 +1154,9 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel lblNumber;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblDate2;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblDate1;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblAvailable1;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblAvailable2;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblAvailable3;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblAvailable4;
     }
 }
