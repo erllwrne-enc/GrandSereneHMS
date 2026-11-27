@@ -22,6 +22,9 @@ namespace HotelGrandSerene.StaffModule.UserControlNavigation
             dgvStaff.CellMouseClick -= dgvStaff_CellMouseClick;
             dgvStaff.CellMouseClick += dgvStaff_CellMouseClick;
 
+            dgvStaff.CellDoubleClick -= dgvStaff_CellDoubleClick;
+            dgvStaff.CellDoubleClick += dgvStaff_CellDoubleClick;
+
             InitializeStaffContextMenu();
         }
 
@@ -52,8 +55,18 @@ namespace HotelGrandSerene.StaffModule.UserControlNavigation
             }
         }
 
+        private void dgvStaff_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+            dgvStaff.ClearSelection();
+            dgvStaff.Rows[e.RowIndex].Selected = true;
+            itemEditStaff_Click(sender, EventArgs.Empty);
+        }
+
         private void itemEditStaff_Click(object sender, EventArgs e)
         {
+           
+
             if (dgvStaff.SelectedRows.Count == 0) return;
 
             DataGridViewRow selectedRow = dgvStaff.SelectedRows[0];
@@ -112,6 +125,17 @@ namespace HotelGrandSerene.StaffModule.UserControlNavigation
         // Action button to trigger account creation modal
         private void btnModifyAddAcc_Click(object sender, EventArgs e)
         {
+            if (dgvStaff.SelectedRows.Count > 0)
+            {
+                string name = GetCellValue(dgvStaff.SelectedRows[0], "colStaffMember", 0);
+                DialogResult choice = MessageBox.Show(
+                    "Do you want to EDIT \"" + name + "\"?\n\nYes = edit this account\nNo = create a NEW account\nCancel = do nothing",
+                    "Modify or Add Account", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+
+                if (choice == DialogResult.Cancel) return;
+                if (choice == DialogResult.Yes) { itemEditStaff_Click(sender, e); return; }
+                dgvStaff.ClearSelection();   // "No": fall through and create a new account
+            }
             using (Form overlay = new Form())
             {
                 overlay.StartPosition = FormStartPosition.Manual;
@@ -158,7 +182,8 @@ namespace HotelGrandSerene.StaffModule.UserControlNavigation
                             EmployeeID,
                             CONCAT(FirstName, ' ', LastName) AS StaffName,
                             Role,
-                            ISNULL(ContactNumber, 'N/A') AS ContactNumber
+                            ISNULL(ContactNumber, 'N/A') AS ContactNumber,
+                            ISNULL(IsActive, 1) AS IsActive
                         FROM EMPLOYEE
                         ORDER BY EmployeeID ASC";
 
@@ -172,7 +197,7 @@ namespace HotelGrandSerene.StaffModule.UserControlNavigation
                                 string staffName = reader["StaffName"].ToString();
                                 string role = reader["Role"].ToString();
                                 string shift = "Day Shift";
-                                string status = "Active";
+                                string status = Convert.ToBoolean(reader["IsActive"]) ? "Active" : "Inactive";
                                 string contact = reader["ContactNumber"].ToString();
 
                                 AddStaffRow(employeeId, staffName, role, shift, status, contact);
@@ -238,9 +263,7 @@ namespace HotelGrandSerene.StaffModule.UserControlNavigation
                 }
             }
         }
-
-        private void dgvStaff_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
-        private void dgvStaff_CellContentClick_1(object sender, DataGridViewCellEventArgs e) { }
+        
 
         private void ucSuperAdmin_Load_1(object sender, EventArgs e)
         {

@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cmbRoomType = new Guna.UI2.WinForms.Guna2ComboBox();
             this.cmbRoomStatus = new Guna.UI2.WinForms.Guna2ComboBox();
             this.guna2Panel4 = new Guna.UI2.WinForms.Guna2Panel();
@@ -86,12 +86,12 @@
             this.cmbRoomType.HoverState.Parent = this.cmbRoomType;
             this.cmbRoomType.ItemHeight = 37;
             this.cmbRoomType.ItemsAppearance.Parent = this.cmbRoomType;
-            this.cmbRoomType.Location = new System.Drawing.Point(24, 108);
+            this.cmbRoomType.Location = new System.Drawing.Point(18, 88);
+            this.cmbRoomType.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cmbRoomType.Name = "cmbRoomType";
             this.cmbRoomType.ShadowDecoration.Parent = this.cmbRoomType;
-            this.cmbRoomType.Size = new System.Drawing.Size(252, 43);
+            this.cmbRoomType.Size = new System.Drawing.Size(190, 43);
             this.cmbRoomType.TabIndex = 14;
-            
             // 
             // cmbRoomStatus
             // 
@@ -108,12 +108,12 @@
             this.cmbRoomStatus.HoverState.Parent = this.cmbRoomStatus;
             this.cmbRoomStatus.ItemHeight = 37;
             this.cmbRoomStatus.ItemsAppearance.Parent = this.cmbRoomStatus;
-            this.cmbRoomStatus.Location = new System.Drawing.Point(293, 108);
+            this.cmbRoomStatus.Location = new System.Drawing.Point(220, 88);
+            this.cmbRoomStatus.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cmbRoomStatus.Name = "cmbRoomStatus";
             this.cmbRoomStatus.ShadowDecoration.Parent = this.cmbRoomStatus;
-            this.cmbRoomStatus.Size = new System.Drawing.Size(252, 43);
+            this.cmbRoomStatus.Size = new System.Drawing.Size(190, 43);
             this.cmbRoomStatus.TabIndex = 13;
-            
             // 
             // guna2Panel4
             // 
@@ -124,10 +124,11 @@
             this.guna2Panel4.Controls.Add(this.dgvRoomStatus);
             this.guna2Panel4.Controls.Add(this.guna2Panel5);
             this.guna2Panel4.FillColor = System.Drawing.Color.White;
-            this.guna2Panel4.Location = new System.Drawing.Point(24, 169);
+            this.guna2Panel4.Location = new System.Drawing.Point(18, 137);
+            this.guna2Panel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2Panel4.Name = "guna2Panel4";
             this.guna2Panel4.ShadowDecoration.Parent = this.guna2Panel4;
-            this.guna2Panel4.Size = new System.Drawing.Size(1529, 512);
+            this.guna2Panel4.Size = new System.Drawing.Size(1147, 416);
             this.guna2Panel4.TabIndex = 11;
             this.guna2Panel4.UseTransparentBackground = true;
             // 
@@ -137,21 +138,21 @@
             this.dgvRoomStatus.AllowUserToDeleteRows = false;
             this.dgvRoomStatus.AllowUserToResizeColumns = false;
             this.dgvRoomStatus.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.dgvRoomStatus.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            this.dgvRoomStatus.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvRoomStatus.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvRoomStatus.BackgroundColor = System.Drawing.Color.White;
             this.dgvRoomStatus.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvRoomStatus.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvRoomStatus.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvRoomStatus.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvRoomStatus.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvRoomStatus.ColumnHeadersHeight = 45;
             this.dgvRoomStatus.ColumnHeadersVisible = false;
             this.dgvRoomStatus.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -161,24 +162,25 @@
             this.colStatus,
             this.colRate,
             this.colLastCleaned});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvRoomStatus.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvRoomStatus.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvRoomStatus.EnableHeadersVisualStyles = false;
             this.dgvRoomStatus.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dgvRoomStatus.Location = new System.Drawing.Point(20, 100);
+            this.dgvRoomStatus.Location = new System.Drawing.Point(15, 81);
+            this.dgvRoomStatus.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dgvRoomStatus.Name = "dgvRoomStatus";
             this.dgvRoomStatus.ReadOnly = true;
             this.dgvRoomStatus.RowHeadersVisible = false;
             this.dgvRoomStatus.RowHeadersWidth = 51;
             this.dgvRoomStatus.RowTemplate.Height = 54;
             this.dgvRoomStatus.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvRoomStatus.Size = new System.Drawing.Size(1490, 387);
+            this.dgvRoomStatus.Size = new System.Drawing.Size(1118, 314);
             this.dgvRoomStatus.TabIndex = 3;
             this.dgvRoomStatus.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
             this.dgvRoomStatus.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -261,10 +263,11 @@
             this.guna2Panel5.Controls.Add(this.guna2HtmlLabel9);
             this.guna2Panel5.Controls.Add(this.guna2HtmlLabel7);
             this.guna2Panel5.FillColor = System.Drawing.Color.SeaShell;
-            this.guna2Panel5.Location = new System.Drawing.Point(3, 36);
+            this.guna2Panel5.Location = new System.Drawing.Point(2, 29);
+            this.guna2Panel5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2Panel5.Name = "guna2Panel5";
             this.guna2Panel5.ShadowDecoration.Parent = this.guna2Panel5;
-            this.guna2Panel5.Size = new System.Drawing.Size(1521, 49);
+            this.guna2Panel5.Size = new System.Drawing.Size(1141, 40);
             this.guna2Panel5.TabIndex = 2;
             // 
             // guna2HtmlLabel6
@@ -272,9 +275,10 @@
             this.guna2HtmlLabel6.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel6.Font = new System.Drawing.Font("Segoe UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel6.ForeColor = System.Drawing.Color.Gray;
-            this.guna2HtmlLabel6.Location = new System.Drawing.Point(1276, 16);
+            this.guna2HtmlLabel6.Location = new System.Drawing.Point(957, 13);
+            this.guna2HtmlLabel6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2HtmlLabel6.Name = "guna2HtmlLabel6";
-            this.guna2HtmlLabel6.Size = new System.Drawing.Size(92, 19);
+            this.guna2HtmlLabel6.Size = new System.Drawing.Size(77, 15);
             this.guna2HtmlLabel6.TabIndex = 5;
             this.guna2HtmlLabel6.Text = "LAST CLEANED";
             // 
@@ -283,9 +287,10 @@
             this.guna2HtmlLabel12.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel12.Font = new System.Drawing.Font("Segoe UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel12.ForeColor = System.Drawing.Color.Gray;
-            this.guna2HtmlLabel12.Location = new System.Drawing.Point(1024, 16);
+            this.guna2HtmlLabel12.Location = new System.Drawing.Point(768, 13);
+            this.guna2HtmlLabel12.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2HtmlLabel12.Name = "guna2HtmlLabel12";
-            this.guna2HtmlLabel12.Size = new System.Drawing.Size(34, 19);
+            this.guna2HtmlLabel12.Size = new System.Drawing.Size(29, 15);
             this.guna2HtmlLabel12.TabIndex = 4;
             this.guna2HtmlLabel12.Text = "RATE";
             // 
@@ -294,9 +299,10 @@
             this.guna2HtmlLabel11.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel11.Font = new System.Drawing.Font("Segoe UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel11.ForeColor = System.Drawing.Color.Gray;
-            this.guna2HtmlLabel11.Location = new System.Drawing.Point(770, 16);
+            this.guna2HtmlLabel11.Location = new System.Drawing.Point(578, 13);
+            this.guna2HtmlLabel11.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2HtmlLabel11.Name = "guna2HtmlLabel11";
-            this.guna2HtmlLabel11.Size = new System.Drawing.Size(49, 19);
+            this.guna2HtmlLabel11.Size = new System.Drawing.Size(42, 15);
             this.guna2HtmlLabel11.TabIndex = 3;
             this.guna2HtmlLabel11.Text = "STATUS";
             // 
@@ -305,9 +311,10 @@
             this.guna2HtmlLabel10.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel10.Font = new System.Drawing.Font("Segoe UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel10.ForeColor = System.Drawing.Color.Gray;
-            this.guna2HtmlLabel10.Location = new System.Drawing.Point(522, 16);
+            this.guna2HtmlLabel10.Location = new System.Drawing.Point(392, 13);
+            this.guna2HtmlLabel10.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2HtmlLabel10.Name = "guna2HtmlLabel10";
-            this.guna2HtmlLabel10.Size = new System.Drawing.Size(44, 19);
+            this.guna2HtmlLabel10.Size = new System.Drawing.Size(37, 15);
             this.guna2HtmlLabel10.TabIndex = 2;
             this.guna2HtmlLabel10.Text = "FLOOR";
             // 
@@ -316,9 +323,10 @@
             this.guna2HtmlLabel9.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel9.Font = new System.Drawing.Font("Segoe UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel9.ForeColor = System.Drawing.Color.Gray;
-            this.guna2HtmlLabel9.Location = new System.Drawing.Point(275, 16);
+            this.guna2HtmlLabel9.Location = new System.Drawing.Point(206, 13);
+            this.guna2HtmlLabel9.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2HtmlLabel9.Name = "guna2HtmlLabel9";
-            this.guna2HtmlLabel9.Size = new System.Drawing.Size(33, 19);
+            this.guna2HtmlLabel9.Size = new System.Drawing.Size(27, 15);
             this.guna2HtmlLabel9.TabIndex = 1;
             this.guna2HtmlLabel9.Text = "TYPE";
             // 
@@ -327,9 +335,10 @@
             this.guna2HtmlLabel7.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel7.Font = new System.Drawing.Font("Segoe UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel7.ForeColor = System.Drawing.Color.Gray;
-            this.guna2HtmlLabel7.Location = new System.Drawing.Point(22, 16);
+            this.guna2HtmlLabel7.Location = new System.Drawing.Point(16, 13);
+            this.guna2HtmlLabel7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2HtmlLabel7.Name = "guna2HtmlLabel7";
-            this.guna2HtmlLabel7.Size = new System.Drawing.Size(43, 19);
+            this.guna2HtmlLabel7.Size = new System.Drawing.Size(36, 15);
             this.guna2HtmlLabel7.TabIndex = 0;
             this.guna2HtmlLabel7.Text = "ROOM";
             // 
@@ -342,10 +351,11 @@
             this.btnProceed.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnProceed.ForeColor = System.Drawing.Color.White;
             this.btnProceed.HoverState.Parent = this.btnProceed;
-            this.btnProceed.Location = new System.Drawing.Point(1170, 838);
+            this.btnProceed.Location = new System.Drawing.Point(878, 681);
+            this.btnProceed.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnProceed.Name = "btnProceed";
             this.btnProceed.ShadowDecoration.Parent = this.btnProceed;
-            this.btnProceed.Size = new System.Drawing.Size(387, 49);
+            this.btnProceed.Size = new System.Drawing.Size(290, 40);
             this.btnProceed.TabIndex = 16;
             this.btnProceed.Text = "Proceed";
             this.btnProceed.Click += new System.EventHandler(this.btnProceed_Click);
@@ -361,10 +371,11 @@
             this.btnGuestCounter.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnGuestCounter.ForeColor = System.Drawing.Color.Silver;
             this.btnGuestCounter.HoverState.Parent = this.btnGuestCounter;
-            this.btnGuestCounter.Location = new System.Drawing.Point(563, 108);
+            this.btnGuestCounter.Location = new System.Drawing.Point(422, 88);
+            this.btnGuestCounter.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnGuestCounter.Name = "btnGuestCounter";
             this.btnGuestCounter.ShadowDecoration.Parent = this.btnGuestCounter;
-            this.btnGuestCounter.Size = new System.Drawing.Size(386, 45);
+            this.btnGuestCounter.Size = new System.Drawing.Size(290, 37);
             this.btnGuestCounter.TabIndex = 33;
             this.btnGuestCounter.Text = "1  Room, 1  Adult, 0  Child";
             this.btnGuestCounter.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -386,37 +397,41 @@
             this.pnlGuestCountDrop.Controls.Add(this.guna2HtmlLabel2);
             this.pnlGuestCountDrop.Controls.Add(this.guna2HtmlLabel4);
             this.pnlGuestCountDrop.FillColor = System.Drawing.Color.White;
-            this.pnlGuestCountDrop.Location = new System.Drawing.Point(566, 159);
+            this.pnlGuestCountDrop.Location = new System.Drawing.Point(424, 129);
+            this.pnlGuestCountDrop.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pnlGuestCountDrop.Name = "pnlGuestCountDrop";
             this.pnlGuestCountDrop.ShadowDecoration.Parent = this.pnlGuestCountDrop;
-            this.pnlGuestCountDrop.Size = new System.Drawing.Size(365, 311);
+            this.pnlGuestCountDrop.Size = new System.Drawing.Size(274, 253);
             this.pnlGuestCountDrop.TabIndex = 32;
             this.pnlGuestCountDrop.Visible = false;
             // 
             // lblChildCount
             // 
             this.lblChildCount.BackColor = System.Drawing.Color.Transparent;
-            this.lblChildCount.Location = new System.Drawing.Point(177, 254);
+            this.lblChildCount.Location = new System.Drawing.Point(133, 206);
+            this.lblChildCount.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.lblChildCount.Name = "lblChildCount";
-            this.lblChildCount.Size = new System.Drawing.Size(10, 18);
+            this.lblChildCount.Size = new System.Drawing.Size(9, 15);
             this.lblChildCount.TabIndex = 10;
             this.lblChildCount.Text = "0";
             // 
             // lblAdultCount
             // 
             this.lblAdultCount.BackColor = System.Drawing.Color.Transparent;
-            this.lblAdultCount.Location = new System.Drawing.Point(177, 165);
+            this.lblAdultCount.Location = new System.Drawing.Point(133, 134);
+            this.lblAdultCount.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.lblAdultCount.Name = "lblAdultCount";
-            this.lblAdultCount.Size = new System.Drawing.Size(10, 18);
+            this.lblAdultCount.Size = new System.Drawing.Size(9, 15);
             this.lblAdultCount.TabIndex = 9;
             this.lblAdultCount.Text = "1";
             // 
             // lblRoomCount
             // 
             this.lblRoomCount.BackColor = System.Drawing.Color.Transparent;
-            this.lblRoomCount.Location = new System.Drawing.Point(174, 71);
+            this.lblRoomCount.Location = new System.Drawing.Point(130, 58);
+            this.lblRoomCount.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.lblRoomCount.Name = "lblRoomCount";
-            this.lblRoomCount.Size = new System.Drawing.Size(10, 18);
+            this.lblRoomCount.Size = new System.Drawing.Size(9, 15);
             this.lblRoomCount.TabIndex = 8;
             this.lblRoomCount.Text = "1";
             // 
@@ -429,10 +444,11 @@
             this.btnChildPlus.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnChildPlus.ForeColor = System.Drawing.Color.White;
             this.btnChildPlus.HoverState.Parent = this.btnChildPlus;
-            this.btnChildPlus.Location = new System.Drawing.Point(302, 245);
+            this.btnChildPlus.Location = new System.Drawing.Point(226, 199);
+            this.btnChildPlus.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnChildPlus.Name = "btnChildPlus";
             this.btnChildPlus.ShadowDecoration.Parent = this.btnChildPlus;
-            this.btnChildPlus.Size = new System.Drawing.Size(40, 45);
+            this.btnChildPlus.Size = new System.Drawing.Size(30, 37);
             this.btnChildPlus.TabIndex = 7;
             this.btnChildPlus.Text = "+";
             this.btnChildPlus.Click += new System.EventHandler(this.btnChildPlus_Click);
@@ -446,10 +462,11 @@
             this.btnRoomsPlus.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnRoomsPlus.ForeColor = System.Drawing.Color.White;
             this.btnRoomsPlus.HoverState.Parent = this.btnRoomsPlus;
-            this.btnRoomsPlus.Location = new System.Drawing.Point(302, 56);
+            this.btnRoomsPlus.Location = new System.Drawing.Point(226, 46);
+            this.btnRoomsPlus.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnRoomsPlus.Name = "btnRoomsPlus";
             this.btnRoomsPlus.ShadowDecoration.Parent = this.btnRoomsPlus;
-            this.btnRoomsPlus.Size = new System.Drawing.Size(40, 45);
+            this.btnRoomsPlus.Size = new System.Drawing.Size(30, 37);
             this.btnRoomsPlus.TabIndex = 6;
             this.btnRoomsPlus.Text = "+";
             this.btnRoomsPlus.Click += new System.EventHandler(this.btnRoomsPlus_Click);
@@ -463,10 +480,11 @@
             this.btnAdultPlus.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnAdultPlus.ForeColor = System.Drawing.Color.White;
             this.btnAdultPlus.HoverState.Parent = this.btnAdultPlus;
-            this.btnAdultPlus.Location = new System.Drawing.Point(302, 155);
+            this.btnAdultPlus.Location = new System.Drawing.Point(226, 126);
+            this.btnAdultPlus.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAdultPlus.Name = "btnAdultPlus";
             this.btnAdultPlus.ShadowDecoration.Parent = this.btnAdultPlus;
-            this.btnAdultPlus.Size = new System.Drawing.Size(40, 45);
+            this.btnAdultPlus.Size = new System.Drawing.Size(30, 37);
             this.btnAdultPlus.TabIndex = 6;
             this.btnAdultPlus.Text = "+";
             this.btnAdultPlus.Click += new System.EventHandler(this.btnAdultsPlus_Click);
@@ -480,10 +498,11 @@
             this.btnChildMinus.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnChildMinus.ForeColor = System.Drawing.Color.White;
             this.btnChildMinus.HoverState.Parent = this.btnChildMinus;
-            this.btnChildMinus.Location = new System.Drawing.Point(17, 245);
+            this.btnChildMinus.Location = new System.Drawing.Point(13, 199);
+            this.btnChildMinus.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnChildMinus.Name = "btnChildMinus";
             this.btnChildMinus.ShadowDecoration.Parent = this.btnChildMinus;
-            this.btnChildMinus.Size = new System.Drawing.Size(40, 45);
+            this.btnChildMinus.Size = new System.Drawing.Size(30, 37);
             this.btnChildMinus.TabIndex = 5;
             this.btnChildMinus.Text = "-";
             this.btnChildMinus.Click += new System.EventHandler(this.btnChildMinus_Click);
@@ -497,10 +516,11 @@
             this.btnAdultMinus.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnAdultMinus.ForeColor = System.Drawing.Color.White;
             this.btnAdultMinus.HoverState.Parent = this.btnAdultMinus;
-            this.btnAdultMinus.Location = new System.Drawing.Point(17, 155);
+            this.btnAdultMinus.Location = new System.Drawing.Point(13, 126);
+            this.btnAdultMinus.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAdultMinus.Name = "btnAdultMinus";
             this.btnAdultMinus.ShadowDecoration.Parent = this.btnAdultMinus;
-            this.btnAdultMinus.Size = new System.Drawing.Size(40, 45);
+            this.btnAdultMinus.Size = new System.Drawing.Size(30, 37);
             this.btnAdultMinus.TabIndex = 4;
             this.btnAdultMinus.Text = "-";
             this.btnAdultMinus.Click += new System.EventHandler(this.btnRoomsMinus_Click);
@@ -514,10 +534,11 @@
             this.btnRoomsMinus.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnRoomsMinus.ForeColor = System.Drawing.Color.White;
             this.btnRoomsMinus.HoverState.Parent = this.btnRoomsMinus;
-            this.btnRoomsMinus.Location = new System.Drawing.Point(17, 56);
+            this.btnRoomsMinus.Location = new System.Drawing.Point(13, 46);
+            this.btnRoomsMinus.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnRoomsMinus.Name = "btnRoomsMinus";
             this.btnRoomsMinus.ShadowDecoration.Parent = this.btnRoomsMinus;
-            this.btnRoomsMinus.Size = new System.Drawing.Size(40, 45);
+            this.btnRoomsMinus.Size = new System.Drawing.Size(30, 37);
             this.btnRoomsMinus.TabIndex = 3;
             this.btnRoomsMinus.Text = "-";
             this.btnRoomsMinus.Click += new System.EventHandler(this.btnRoomsMinus_Click);
@@ -525,27 +546,30 @@
             // guna2HtmlLabel3
             // 
             this.guna2HtmlLabel3.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel3.Location = new System.Drawing.Point(17, 221);
+            this.guna2HtmlLabel3.Location = new System.Drawing.Point(13, 180);
+            this.guna2HtmlLabel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2HtmlLabel3.Name = "guna2HtmlLabel3";
-            this.guna2HtmlLabel3.Size = new System.Drawing.Size(33, 18);
+            this.guna2HtmlLabel3.Size = new System.Drawing.Size(26, 15);
             this.guna2HtmlLabel3.TabIndex = 2;
             this.guna2HtmlLabel3.Text = "Child";
             // 
             // guna2HtmlLabel2
             // 
             this.guna2HtmlLabel2.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel2.Location = new System.Drawing.Point(17, 120);
+            this.guna2HtmlLabel2.Location = new System.Drawing.Point(13, 98);
+            this.guna2HtmlLabel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2HtmlLabel2.Name = "guna2HtmlLabel2";
-            this.guna2HtmlLabel2.Size = new System.Drawing.Size(33, 18);
+            this.guna2HtmlLabel2.Size = new System.Drawing.Size(27, 15);
             this.guna2HtmlLabel2.TabIndex = 1;
             this.guna2HtmlLabel2.Text = "Adult";
             // 
             // guna2HtmlLabel4
             // 
             this.guna2HtmlLabel4.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel4.Location = new System.Drawing.Point(17, 23);
+            this.guna2HtmlLabel4.Location = new System.Drawing.Point(13, 19);
+            this.guna2HtmlLabel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2HtmlLabel4.Name = "guna2HtmlLabel4";
-            this.guna2HtmlLabel4.Size = new System.Drawing.Size(40, 18);
+            this.guna2HtmlLabel4.Size = new System.Drawing.Size(31, 15);
             this.guna2HtmlLabel4.TabIndex = 0;
             this.guna2HtmlLabel4.Text = "Room";
             // 
@@ -558,12 +582,13 @@
             this.dtpCheckOut.FillColor = System.Drawing.Color.White;
             this.dtpCheckOut.Format = System.Windows.Forms.DateTimePickerFormat.Long;
             this.dtpCheckOut.HoverState.Parent = this.dtpCheckOut;
-            this.dtpCheckOut.Location = new System.Drawing.Point(1256, 108);
+            this.dtpCheckOut.Location = new System.Drawing.Point(942, 88);
+            this.dtpCheckOut.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dtpCheckOut.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dtpCheckOut.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dtpCheckOut.Name = "dtpCheckOut";
             this.dtpCheckOut.ShadowDecoration.Parent = this.dtpCheckOut;
-            this.dtpCheckOut.Size = new System.Drawing.Size(297, 45);
+            this.dtpCheckOut.Size = new System.Drawing.Size(223, 37);
             this.dtpCheckOut.TabIndex = 35;
             this.dtpCheckOut.Value = new System.DateTime(2026, 10, 24, 0, 59, 0, 34);
             // 
@@ -576,21 +601,22 @@
             this.dtpCheckIn.FillColor = System.Drawing.Color.White;
             this.dtpCheckIn.Format = System.Windows.Forms.DateTimePickerFormat.Long;
             this.dtpCheckIn.HoverState.Parent = this.dtpCheckIn;
-            this.dtpCheckIn.Location = new System.Drawing.Point(965, 108);
+            this.dtpCheckIn.Location = new System.Drawing.Point(724, 88);
+            this.dtpCheckIn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dtpCheckIn.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dtpCheckIn.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dtpCheckIn.Name = "dtpCheckIn";
             this.dtpCheckIn.ShadowDecoration.Parent = this.dtpCheckIn;
-            this.dtpCheckIn.Size = new System.Drawing.Size(285, 45);
+            this.dtpCheckIn.Size = new System.Drawing.Size(214, 37);
             this.dtpCheckIn.TabIndex = 34;
             this.dtpCheckIn.Value = new System.DateTime(2026, 10, 24, 0, 59, 0, 34);
             // 
             // frmRoomSelection
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1600, 924);
+            this.ClientSize = new System.Drawing.Size(1200, 751);
             this.Controls.Add(this.dtpCheckOut);
             this.Controls.Add(this.dtpCheckIn);
             this.Controls.Add(this.btnGuestCounter);
@@ -600,6 +626,7 @@
             this.Controls.Add(this.cmbRoomStatus);
             this.Controls.Add(this.guna2Panel4);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmRoomSelection";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmRoomSelection";

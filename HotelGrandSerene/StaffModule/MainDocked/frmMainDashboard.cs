@@ -2,6 +2,7 @@
 using HotelGrandSerene.DashboardModule.UserControlNavigation;
 using HotelGrandSerene.StaffModule.ModalPopup;
 using HotelGrandSerene.StaffModule.UserControlNavigation;
+using GrandSereneHotel.LoginModule;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -33,7 +34,40 @@ namespace GrandSereneHotel.DashboardModule.MainDocked
             clockTimer.Start();
 
             // 3. Trigger default startup view
-            btnDashboard.PerformClick();
+            Guna.UI2.WinForms.Guna2Button firstTab = ApplyRoleAccess();
+            if (firstTab != null) firstTab.PerformClick();     // e.g. Housekeeping opens on Rooms
+        }
+
+        private Guna.UI2.WinForms.Guna2Button ApplyRoleAccess()
+        {
+            Guna.UI2.WinForms.Guna2Button[] tabs =
+                { btnDashboard, btnReservation, btnRooms, btnGuests, btnFinance, btnStaff, btnSuperAdmin };
+            bool[] allowed =
+            {
+                CurrentUser.CanViewDashboard,
+                CurrentUser.CanViewReservations,
+                CurrentUser.CanViewRooms,
+                CurrentUser.CanViewGuests,
+                CurrentUser.CanViewFinance,
+                CurrentUser.CanViewStaff,
+                CurrentUser.CanManageAccounts
+            };
+
+            int y = btnDashboard.Top;                 // the sidebar starts where Dashboard starts
+            Guna.UI2.WinForms.Guna2Button first = null;
+
+            for (int i = 0; i < tabs.Length; i++)
+            {
+                tabs[i].Visible = allowed[i];
+                if (!allowed[i]) continue;
+
+                tabs[i].Top = y;                      // pack the visible buttons together
+                y += tabs[i].Height + 16;
+                if (first == null) first = tabs[i];
+            }
+
+            btnNewReservation.Visible = CurrentUser.CanCreateReservation;
+            return first;
         }
 
         private void ClockTimer_Tick(object sender, EventArgs e)
@@ -54,6 +88,8 @@ namespace GrandSereneHotel.DashboardModule.MainDocked
             uc.Dock = DockStyle.Fill;
             pnlDashmain.Controls.Add(uc);
             uc.BringToFront();
+
+            btnNewReservation.Visible = CurrentUser.CanCreateReservation && !(uc is ucReservation);
         }
 
         #region --- Navigation Handlers ---
@@ -93,7 +129,14 @@ namespace GrandSereneHotel.DashboardModule.MainDocked
             LoadView(new ucReservation());
         }
 
+        //      The booking steps move into a public method so the Reservations panel
+        //      button can start the very same flow.
         private void btnNewReservation_Click(object sender, EventArgs e)
+        {
+            StartNewReservation();
+        }
+
+        public void StartNewReservation()
         {
             // Create dim overlay form
             Form overlay = new Form
@@ -105,38 +148,40 @@ namespace GrandSereneHotel.DashboardModule.MainDocked
                 StartPosition = FormStartPosition.Manual
             };
 
-            // Calculate dimensions to cover the main dashboard form
             overlay.Size = this.Size;
             overlay.Location = this.Location;
             overlay.Show(this);
 
+            bool booked = false;
             try
             {
-                // Step 1: Open room selection modal dialog over the dim overlay
+                // Step 1: pick rooms
                 using (frmRoomSelection roomModal = new frmRoomSelection())
                 {
                     roomModal.StartPosition = FormStartPosition.CenterParent;
 
                     if (roomModal.ShowDialog(overlay) == DialogResult.OK)
                     {
-                        // Step 2: Swap seamlessly to frmNewReservation in its original natural dimensions
-                        using (frmNewReservation resModal = new frmNewReservation())
+                        // Step 2: guest details + payment
+                        using (frmNewReservation resModal = new frmNewReservation(roomModal.HoldIDs))
                         {
                             resModal.StartPosition = FormStartPosition.CenterParent;
-                            resModal.ShowDialog(overlay);
+                            booked = resModal.ShowDialog(overlay) == DialogResult.OK;
                         }
                     }
                 }
             }
             finally
             {
-                // Clean up overlay after all modals close
                 overlay.Dispose();
             }
+
+            // Show the new booking right away
+            if (booked) LoadView(new ucReservation());
         }
 
 
-       // endregion
+        // endregion
 
         // --- Sign Out & Form Lifecycle Handlers ---
 

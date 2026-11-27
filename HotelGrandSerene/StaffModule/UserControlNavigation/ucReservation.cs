@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using GrandSereneHotel.DatabaseAccess;
+using System.Data.SqlClient;
+using GrandSereneHotel.DashboardModule.MainDocked;
 
 namespace HotelGrandSerene.DashboardModule.UserControlNavigation
 {
@@ -9,7 +12,11 @@ namespace HotelGrandSerene.DashboardModule.UserControlNavigation
         public ucReservation()
         {
             InitializeComponent();
-
+            guna2Button1.Click += (s, e) =>
+            {
+                frmMainDashboard dash = this.FindForm() as frmMainDashboard;
+                if (dash != null) dash.StartNewReservation();
+            };
             ConfigureGrid();
             LoadReservationData();
         }
@@ -59,7 +66,7 @@ namespace HotelGrandSerene.DashboardModule.UserControlNavigation
             dgvReservation.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
 
             dgvReservation.RowTemplate.Height = 52;
-            dgvReservation.ScrollBars = ScrollBars.None;
+            dgvReservation.ScrollBars = ScrollBars.Vertical;    // real data can be longer than 6 rows
 
             // 5. Interaction Rules
             dgvReservation.AllowUserToAddRows = false;
@@ -82,14 +89,49 @@ namespace HotelGrandSerene.DashboardModule.UserControlNavigation
         {
             dgvReservation.Rows.Clear();
 
-            // Populate exact 6 records from the Figma mockup:
-            // (ID, GUEST, ROOM, CHECK-IN, CHECK-OUT, STATUS, AMOUNT)
-            AddReservationRow("R-1042", "Ron Palay", "101 Standard", "Aug 14", "Aug 17", "Confirmed", "$420");
-            AddReservationRow("R-1043", "Chester Peralta", "205 Deluxe", "Aug 14", "Aug 16", "Confirmed", "$380");
-            AddReservationRow("R-1044", "Ginger Rubin", "312 Suite", "Aug 14", "Aug 19", "VIP", "$1,250");
-            AddReservationRow("R-1045", "Marjorie Bayonbon", "418 Executive", "Aug 14", "Aug 15", "Pending", "$210");
-            AddReservationRow("R-1046", "Nayomi Esguerra", "109 Standard", "Aug 12", "Aug 14", "Checkout", "$280");
-            AddReservationRow("R-1047", "Iversonne Cornoda", "214 Deluxe", "Aug 11", "Aug 14", "Checkout", "$540");
+            try
+            {
+                using (SqlConnection conn = DatabaseHelper.GetConnection())
+                {
+                    conn.Open();
+
+                    // One row per reservation (= one room). Newest first.
+                    string sql = @"
+                SELECT r.ReservationID,
+                       CONCAT(c.FirstName, ' ', c.LastName)                       AS GuestName,
+                       CONCAT(rm.RoomNumber, ' ', REPLACE(rt.TypeName, ' Room', '')) AS RoomName,
+                       r.CheckInDate,
+                       r.CheckOutDate,
+                       r.Status,
+                       DATEDIFF(DAY, r.CheckInDate, r.CheckOutDate) * rt.PricePerNight AS TotalAmount
+                FROM RESERVATION r
+                JOIN CUSTOMER  c  ON c.CustomerID  = r.CustomerID
+                JOIN ROOM      rm ON rm.RoomID     = r.RoomID
+                JOIN ROOM_TYPE rt ON rt.RoomTypeID = rm.RoomTypeID
+                ORDER BY r.ReservationDate DESC, r.ReservationID DESC";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    using (SqlDataReader r = cmd.ExecuteReader())
+                    {
+                        while (r.Read())
+                        {
+                            AddReservationRow(
+                                "R-" + r.GetInt32(0),
+                                r.GetString(1),
+                                r.GetString(2),
+                                r.GetDateTime(3).ToString("MMM dd, yyyy"),
+                                r.GetDateTime(4).ToString("MMM dd, yyyy"),
+                                r.GetString(5),
+                                "\u20B1" + r.GetDecimal(6).ToString("N2"));   // peso sign
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Could not load reservations:\n\n" + ex.Message,
+                    "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
             dgvReservation.ClearSelection();
         }
@@ -147,6 +189,15 @@ namespace HotelGrandSerene.DashboardModule.UserControlNavigation
                         break;
                     case "Checkout":
                         e.CellStyle.ForeColor = Color.FromArgb(100, 116, 139); // Muted Gray
+                        break;
+                    case "Checked-In":
+                        e.CellStyle.ForeColor = Color.FromArgb(37, 99, 235);   // Blue
+                        break;
+                    case "Checked-Out":
+                        e.CellStyle.ForeColor = Color.FromArgb(100, 116, 139); // Muted gray
+                        break;
+                    case "Cancelled":
+                        e.CellStyle.ForeColor = Color.FromArgb(220, 38, 38);   // Red
                         break;
                 }
             }

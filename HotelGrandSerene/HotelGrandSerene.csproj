@@ -96,6 +96,7 @@
       <DependentUpon>ucRoomSelectionPage.cs</DependentUpon>
     </Compile>
     <Compile Include="DatabaseAccess\DatabaseHelper.cs" />
+    <Compile Include="DatabaseAccess\StayService.cs" />
     <Compile Include="LoginModule\EmployeeSetup.cs" />
     <Compile Include="LoginModule\frmAdministratorInitialize.cs">
       <SubType>Form</SubType>
@@ -104,6 +105,7 @@
       <DependentUpon>frmAdministratorInitialize.cs</DependentUpon>
     </Compile>
     <Compile Include="LoginModule\PasswordHelper.cs" />
+    <Compile Include="LoginModule\Roles.cs" />
     <Compile Include="StaffModule\MainDocked\frmMainDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +117,9 @@
     </Compile>
     <Compile Include="StaffModule\ModalPopup\frmAccountCreator.Designer.cs">
       <DependentUpon>frmAccountCreator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StaffModule\ModalPopup\frmCheckout.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="StaffModule\ModalPopup\frmMasterModifier.cs">
       <SubType>Form</SubType>

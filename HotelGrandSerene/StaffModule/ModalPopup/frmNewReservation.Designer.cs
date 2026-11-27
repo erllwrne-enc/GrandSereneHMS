@@ -89,10 +89,11 @@
             this.guna2Panel1.Controls.Add(this.cmbPrefix);
             this.guna2Panel1.Controls.Add(this.guna2HtmlLabel1);
             this.guna2Panel1.FillColor = System.Drawing.Color.White;
-            this.guna2Panel1.Location = new System.Drawing.Point(3, 2);
+            this.guna2Panel1.Location = new System.Drawing.Point(2, 2);
+            this.guna2Panel1.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Panel1.Name = "guna2Panel1";
             this.guna2Panel1.ShadowDecoration.Parent = this.guna2Panel1;
-            this.guna2Panel1.Size = new System.Drawing.Size(1141, 858);
+            this.guna2Panel1.Size = new System.Drawing.Size(856, 697);
             this.guna2Panel1.TabIndex = 4;
             // 
             // txtHomeAddress
@@ -109,14 +110,13 @@
             this.txtHomeAddress.FocusedState.Parent = this.txtHomeAddress;
             this.txtHomeAddress.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtHomeAddress.HoverState.Parent = this.txtHomeAddress;
-            this.txtHomeAddress.Location = new System.Drawing.Point(31, 340);
-            this.txtHomeAddress.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtHomeAddress.Location = new System.Drawing.Point(23, 276);
             this.txtHomeAddress.Name = "txtHomeAddress";
             this.txtHomeAddress.PasswordChar = '\0';
             this.txtHomeAddress.PlaceholderText = "Home Address";
             this.txtHomeAddress.SelectedText = "";
             this.txtHomeAddress.ShadowDecoration.Parent = this.txtHomeAddress;
-            this.txtHomeAddress.Size = new System.Drawing.Size(532, 45);
+            this.txtHomeAddress.Size = new System.Drawing.Size(399, 37);
             this.txtHomeAddress.TabIndex = 32;
             this.txtHomeAddress.TextChanged += new System.EventHandler(this.txtHomeAddress_TextChanged);
             // 
@@ -134,14 +134,13 @@
             this.txtIDNumber.FocusedState.Parent = this.txtIDNumber;
             this.txtIDNumber.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtIDNumber.HoverState.Parent = this.txtIDNumber;
-            this.txtIDNumber.Location = new System.Drawing.Point(579, 276);
-            this.txtIDNumber.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtIDNumber.Location = new System.Drawing.Point(434, 224);
             this.txtIDNumber.Name = "txtIDNumber";
             this.txtIDNumber.PasswordChar = '\0';
             this.txtIDNumber.PlaceholderText = "ID Number";
             this.txtIDNumber.SelectedText = "";
             this.txtIDNumber.ShadowDecoration.Parent = this.txtIDNumber;
-            this.txtIDNumber.Size = new System.Drawing.Size(532, 45);
+            this.txtIDNumber.Size = new System.Drawing.Size(399, 37);
             this.txtIDNumber.TabIndex = 31;
             this.txtIDNumber.TextChanged += new System.EventHandler(this.txtIDNumber_TextChanged);
             // 
@@ -159,14 +158,13 @@
             this.txtIDType.FocusedState.Parent = this.txtIDType;
             this.txtIDType.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtIDType.HoverState.Parent = this.txtIDType;
-            this.txtIDType.Location = new System.Drawing.Point(582, 207);
-            this.txtIDType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtIDType.Location = new System.Drawing.Point(436, 168);
             this.txtIDType.Name = "txtIDType";
             this.txtIDType.PasswordChar = '\0';
             this.txtIDType.PlaceholderText = "ID Type";
             this.txtIDType.SelectedText = "";
             this.txtIDType.ShadowDecoration.Parent = this.txtIDType;
-            this.txtIDType.Size = new System.Drawing.Size(532, 45);
+            this.txtIDType.Size = new System.Drawing.Size(399, 37);
             this.txtIDType.TabIndex = 30;
             this.txtIDType.TextChanged += new System.EventHandler(this.txtIDType_TextChanged);
             // 
@@ -174,10 +172,11 @@
             // 
             this.pnlDetails.Controls.Add(this.cmbBank);
             this.pnlDetails.Controls.Add(this.cmbBankTransferType);
-            this.pnlDetails.Location = new System.Drawing.Point(4, 539);
+            this.pnlDetails.Location = new System.Drawing.Point(3, 438);
+            this.pnlDetails.Margin = new System.Windows.Forms.Padding(2);
             this.pnlDetails.Name = "pnlDetails";
             this.pnlDetails.ShadowDecoration.Parent = this.pnlDetails;
-            this.pnlDetails.Size = new System.Drawing.Size(602, 159);
+            this.pnlDetails.Size = new System.Drawing.Size(452, 129);
             this.pnlDetails.TabIndex = 25;
             this.pnlDetails.Visible = false;
             this.pnlDetails.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlDetails_Paint);
@@ -201,10 +200,11 @@
             "BPI",
             "GoTyme"});
             this.cmbBank.ItemsAppearance.Parent = this.cmbBank;
-            this.cmbBank.Location = new System.Drawing.Point(27, 21);
+            this.cmbBank.Location = new System.Drawing.Point(20, 17);
+            this.cmbBank.Margin = new System.Windows.Forms.Padding(2);
             this.cmbBank.Name = "cmbBank";
             this.cmbBank.ShadowDecoration.Parent = this.cmbBank;
-            this.cmbBank.Size = new System.Drawing.Size(249, 36);
+            this.cmbBank.Size = new System.Drawing.Size(188, 36);
             this.cmbBank.StartIndex = 0;
             this.cmbBank.TabIndex = 23;
             this.cmbBank.SelectedIndexChanged += new System.EventHandler(this.guna2ComboBox2_SelectedIndexChanged);
@@ -225,10 +225,11 @@
             "Savings",
             "Checking"});
             this.cmbBankTransferType.ItemsAppearance.Parent = this.cmbBankTransferType;
-            this.cmbBankTransferType.Location = new System.Drawing.Point(294, 21);
+            this.cmbBankTransferType.Location = new System.Drawing.Point(220, 17);
+            this.cmbBankTransferType.Margin = new System.Windows.Forms.Padding(2);
             this.cmbBankTransferType.Name = "cmbBankTransferType";
             this.cmbBankTransferType.ShadowDecoration.Parent = this.cmbBankTransferType;
-            this.cmbBankTransferType.Size = new System.Drawing.Size(265, 36);
+            this.cmbBankTransferType.Size = new System.Drawing.Size(200, 36);
             this.cmbBankTransferType.StartIndex = 0;
             this.cmbBankTransferType.TabIndex = 24;
             this.cmbBankTransferType.SelectedIndexChanged += new System.EventHandler(this.cmbBankTransferType_SelectedIndexChanged);
@@ -242,12 +243,13 @@
             this.dtpBirthdate.FillColor = System.Drawing.Color.White;
             this.dtpBirthdate.Format = System.Windows.Forms.DateTimePickerFormat.Long;
             this.dtpBirthdate.HoverState.Parent = this.dtpBirthdate;
-            this.dtpBirthdate.Location = new System.Drawing.Point(28, 137);
+            this.dtpBirthdate.Location = new System.Drawing.Point(21, 111);
+            this.dtpBirthdate.Margin = new System.Windows.Forms.Padding(2);
             this.dtpBirthdate.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dtpBirthdate.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dtpBirthdate.Name = "dtpBirthdate";
             this.dtpBirthdate.ShadowDecoration.Parent = this.dtpBirthdate;
-            this.dtpBirthdate.Size = new System.Drawing.Size(532, 45);
+            this.dtpBirthdate.Size = new System.Drawing.Size(399, 37);
             this.dtpBirthdate.TabIndex = 29;
             this.dtpBirthdate.Value = new System.DateTime(2026, 10, 24, 0, 59, 0, 34);
             this.dtpBirthdate.ValueChanged += new System.EventHandler(this.dtpBirthdate_ValueChanged);
@@ -262,12 +264,14 @@
             this.btnCancelR.HoverState.Parent = this.btnCancelR;
             this.btnCancelR.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelR.Image")));
             this.btnCancelR.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnCancelR.Location = new System.Drawing.Point(1078, 18);
+            this.btnCancelR.Location = new System.Drawing.Point(804, 15);
+            this.btnCancelR.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancelR.Name = "btnCancelR";
             this.btnCancelR.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.btnCancelR.ShadowDecoration.Parent = this.btnCancelR;
-            this.btnCancelR.Size = new System.Drawing.Size(36, 34);
+            this.btnCancelR.Size = new System.Drawing.Size(31, 28);
             this.btnCancelR.TabIndex = 28;
+            this.btnCancelR.Click += new System.EventHandler(this.btnCancelR_Click);
             // 
             // pnlPaymentDetails
             // 
@@ -275,10 +279,11 @@
             this.pnlPaymentDetails.Controls.Add(this.txtCVV);
             this.pnlPaymentDetails.Controls.Add(this.txtExpirationDate);
             this.pnlPaymentDetails.Controls.Add(this.txtCardNumber);
-            this.pnlPaymentDetails.Location = new System.Drawing.Point(6, 539);
+            this.pnlPaymentDetails.Location = new System.Drawing.Point(4, 438);
+            this.pnlPaymentDetails.Margin = new System.Windows.Forms.Padding(2);
             this.pnlPaymentDetails.Name = "pnlPaymentDetails";
             this.pnlPaymentDetails.ShadowDecoration.Parent = this.pnlPaymentDetails;
-            this.pnlPaymentDetails.Size = new System.Drawing.Size(600, 282);
+            this.pnlPaymentDetails.Size = new System.Drawing.Size(450, 229);
             this.pnlPaymentDetails.TabIndex = 27;
             this.pnlPaymentDetails.Visible = false;
             // 
@@ -296,14 +301,13 @@
             this.txtNameOnCard.FocusedState.Parent = this.txtNameOnCard;
             this.txtNameOnCard.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtNameOnCard.HoverState.Parent = this.txtNameOnCard;
-            this.txtNameOnCard.Location = new System.Drawing.Point(19, 146);
-            this.txtNameOnCard.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNameOnCard.Location = new System.Drawing.Point(14, 119);
             this.txtNameOnCard.Name = "txtNameOnCard";
             this.txtNameOnCard.PasswordChar = '\0';
             this.txtNameOnCard.PlaceholderText = "Name on Card";
             this.txtNameOnCard.SelectedText = "";
             this.txtNameOnCard.ShadowDecoration.Parent = this.txtNameOnCard;
-            this.txtNameOnCard.Size = new System.Drawing.Size(532, 45);
+            this.txtNameOnCard.Size = new System.Drawing.Size(399, 37);
             this.txtNameOnCard.TabIndex = 22;
             this.txtNameOnCard.TextChanged += new System.EventHandler(this.txtNameOnCard_TextChanged);
             // 
@@ -321,14 +325,13 @@
             this.txtCVV.FocusedState.Parent = this.txtCVV;
             this.txtCVV.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtCVV.HoverState.Parent = this.txtCVV;
-            this.txtCVV.Location = new System.Drawing.Point(388, 84);
-            this.txtCVV.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCVV.Location = new System.Drawing.Point(291, 68);
             this.txtCVV.Name = "txtCVV";
             this.txtCVV.PasswordChar = '\0';
             this.txtCVV.PlaceholderText = "CVV";
             this.txtCVV.SelectedText = "";
             this.txtCVV.ShadowDecoration.Parent = this.txtCVV;
-            this.txtCVV.Size = new System.Drawing.Size(163, 45);
+            this.txtCVV.Size = new System.Drawing.Size(122, 37);
             this.txtCVV.TabIndex = 21;
             this.txtCVV.TextChanged += new System.EventHandler(this.txtCVV_TextChanged);
             // 
@@ -346,14 +349,13 @@
             this.txtExpirationDate.FocusedState.Parent = this.txtExpirationDate;
             this.txtExpirationDate.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtExpirationDate.HoverState.Parent = this.txtExpirationDate;
-            this.txtExpirationDate.Location = new System.Drawing.Point(19, 84);
-            this.txtExpirationDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtExpirationDate.Location = new System.Drawing.Point(14, 68);
             this.txtExpirationDate.Name = "txtExpirationDate";
             this.txtExpirationDate.PasswordChar = '\0';
             this.txtExpirationDate.PlaceholderText = "Expiration Date (MM/YY)";
             this.txtExpirationDate.SelectedText = "";
             this.txtExpirationDate.ShadowDecoration.Parent = this.txtExpirationDate;
-            this.txtExpirationDate.Size = new System.Drawing.Size(361, 45);
+            this.txtExpirationDate.Size = new System.Drawing.Size(271, 37);
             this.txtExpirationDate.TabIndex = 20;
             this.txtExpirationDate.TextChanged += new System.EventHandler(this.txtExpirationDate_TextChanged);
             // 
@@ -371,14 +373,13 @@
             this.txtCardNumber.FocusedState.Parent = this.txtCardNumber;
             this.txtCardNumber.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtCardNumber.HoverState.Parent = this.txtCardNumber;
-            this.txtCardNumber.Location = new System.Drawing.Point(19, 21);
-            this.txtCardNumber.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCardNumber.Location = new System.Drawing.Point(14, 17);
             this.txtCardNumber.Name = "txtCardNumber";
             this.txtCardNumber.PasswordChar = '\0';
             this.txtCardNumber.PlaceholderText = "Card number";
             this.txtCardNumber.SelectedText = "";
             this.txtCardNumber.ShadowDecoration.Parent = this.txtCardNumber;
-            this.txtCardNumber.Size = new System.Drawing.Size(532, 45);
+            this.txtCardNumber.Size = new System.Drawing.Size(399, 37);
             this.txtCardNumber.TabIndex = 19;
             this.txtCardNumber.TextChanged += new System.EventHandler(this.txtCardNumber_TextChanged);
             // 
@@ -399,10 +400,11 @@
             "Credit / Debit Card",
             "Bank Transfer  / E-wallet"});
             this.cmbPaymentMethod.ItemsAppearance.Parent = this.cmbPaymentMethod;
-            this.cmbPaymentMethod.Location = new System.Drawing.Point(28, 497);
+            this.cmbPaymentMethod.Location = new System.Drawing.Point(21, 404);
+            this.cmbPaymentMethod.Margin = new System.Windows.Forms.Padding(2);
             this.cmbPaymentMethod.Name = "cmbPaymentMethod";
             this.cmbPaymentMethod.ShadowDecoration.Parent = this.cmbPaymentMethod;
-            this.cmbPaymentMethod.Size = new System.Drawing.Size(532, 36);
+            this.cmbPaymentMethod.Size = new System.Drawing.Size(400, 36);
             this.cmbPaymentMethod.TabIndex = 26;
             this.cmbPaymentMethod.SelectedIndexChanged += new System.EventHandler(this.cmbPaymentMethod_SelectedIndexChanged);
             // 
@@ -417,10 +419,11 @@
             this.btnConfirm.HoverState.Parent = this.btnConfirm;
             this.btnConfirm.Image = ((System.Drawing.Image)(resources.GetObject("btnConfirm.Image")));
             this.btnConfirm.ImageOffset = new System.Drawing.Point(-5, 0);
-            this.btnConfirm.Location = new System.Drawing.Point(748, 793);
+            this.btnConfirm.Location = new System.Drawing.Point(561, 644);
+            this.btnConfirm.Margin = new System.Windows.Forms.Padding(2);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.ShadowDecoration.Parent = this.btnConfirm;
-            this.btnConfirm.Size = new System.Drawing.Size(363, 56);
+            this.btnConfirm.Size = new System.Drawing.Size(272, 46);
             this.btnConfirm.TabIndex = 25;
             this.btnConfirm.Text = "Confirm Info";
             this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
@@ -439,11 +442,12 @@
             this.btnFullPayment.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(1)))), ((int)(((byte)(101)))));
             this.btnFullPayment.HoverState.ForeColor = System.Drawing.Color.White;
             this.btnFullPayment.HoverState.Parent = this.btnFullPayment;
-            this.btnFullPayment.Location = new System.Drawing.Point(579, 410);
+            this.btnFullPayment.Location = new System.Drawing.Point(434, 333);
+            this.btnFullPayment.Margin = new System.Windows.Forms.Padding(2);
             this.btnFullPayment.Name = "btnFullPayment";
             this.btnFullPayment.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(1)))), ((int)(((byte)(101)))));
             this.btnFullPayment.ShadowDecoration.Parent = this.btnFullPayment;
-            this.btnFullPayment.Size = new System.Drawing.Size(532, 72);
+            this.btnFullPayment.Size = new System.Drawing.Size(399, 58);
             this.btnFullPayment.TabIndex = 24;
             this.btnFullPayment.Text = "Full Payment";
             this.btnFullPayment.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -463,14 +467,13 @@
             this.txtNotes.FocusedState.Parent = this.txtNotes;
             this.txtNotes.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtNotes.HoverState.Parent = this.txtNotes;
-            this.txtNotes.Location = new System.Drawing.Point(31, 276);
-            this.txtNotes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNotes.Location = new System.Drawing.Point(23, 224);
             this.txtNotes.Name = "txtNotes";
             this.txtNotes.PasswordChar = '\0';
             this.txtNotes.PlaceholderText = "Notes";
             this.txtNotes.SelectedText = "";
             this.txtNotes.ShadowDecoration.Parent = this.txtNotes;
-            this.txtNotes.Size = new System.Drawing.Size(532, 45);
+            this.txtNotes.Size = new System.Drawing.Size(399, 37);
             this.txtNotes.TabIndex = 23;
             this.txtNotes.TextChanged += new System.EventHandler(this.txtNotes_TextChanged);
             // 
@@ -488,11 +491,12 @@
             this.btnPartialPayment.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(1)))), ((int)(((byte)(101)))));
             this.btnPartialPayment.HoverState.ForeColor = System.Drawing.Color.White;
             this.btnPartialPayment.HoverState.Parent = this.btnPartialPayment;
-            this.btnPartialPayment.Location = new System.Drawing.Point(28, 410);
+            this.btnPartialPayment.Location = new System.Drawing.Point(21, 333);
+            this.btnPartialPayment.Margin = new System.Windows.Forms.Padding(2);
             this.btnPartialPayment.Name = "btnPartialPayment";
             this.btnPartialPayment.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(1)))), ((int)(((byte)(101)))));
             this.btnPartialPayment.ShadowDecoration.Parent = this.btnPartialPayment;
-            this.btnPartialPayment.Size = new System.Drawing.Size(532, 72);
+            this.btnPartialPayment.Size = new System.Drawing.Size(399, 58);
             this.btnPartialPayment.TabIndex = 19;
             this.btnPartialPayment.Text = "Partial Downpayment";
             this.btnPartialPayment.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -512,14 +516,13 @@
             this.txtLastName.FocusedState.Parent = this.txtLastName;
             this.txtLastName.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtLastName.HoverState.Parent = this.txtLastName;
-            this.txtLastName.Location = new System.Drawing.Point(582, 73);
-            this.txtLastName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtLastName.Location = new System.Drawing.Point(436, 59);
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.PasswordChar = '\0';
             this.txtLastName.PlaceholderText = "Last Name";
             this.txtLastName.SelectedText = "";
             this.txtLastName.ShadowDecoration.Parent = this.txtLastName;
-            this.txtLastName.Size = new System.Drawing.Size(532, 45);
+            this.txtLastName.Size = new System.Drawing.Size(399, 37);
             this.txtLastName.TabIndex = 7;
             this.txtLastName.TextChanged += new System.EventHandler(this.txtLastName_TextChanged);
             // 
@@ -537,14 +540,13 @@
             this.txtEmail.FocusedState.Parent = this.txtEmail;
             this.txtEmail.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtEmail.HoverState.Parent = this.txtEmail;
-            this.txtEmail.Location = new System.Drawing.Point(31, 207);
-            this.txtEmail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtEmail.Location = new System.Drawing.Point(23, 168);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.PasswordChar = '\0';
             this.txtEmail.PlaceholderText = "Email Address";
             this.txtEmail.SelectedText = "";
             this.txtEmail.ShadowDecoration.Parent = this.txtEmail;
-            this.txtEmail.Size = new System.Drawing.Size(532, 45);
+            this.txtEmail.Size = new System.Drawing.Size(399, 37);
             this.txtEmail.TabIndex = 5;
             this.txtEmail.TextChanged += new System.EventHandler(this.txtEmail_TextChanged);
             // 
@@ -562,14 +564,13 @@
             this.txtPhone.FocusedState.Parent = this.txtPhone;
             this.txtPhone.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtPhone.HoverState.Parent = this.txtPhone;
-            this.txtPhone.Location = new System.Drawing.Point(582, 137);
-            this.txtPhone.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPhone.Location = new System.Drawing.Point(436, 111);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.PasswordChar = '\0';
             this.txtPhone.PlaceholderText = "Phone";
             this.txtPhone.SelectedText = "";
             this.txtPhone.ShadowDecoration.Parent = this.txtPhone;
-            this.txtPhone.Size = new System.Drawing.Size(532, 45);
+            this.txtPhone.Size = new System.Drawing.Size(399, 37);
             this.txtPhone.TabIndex = 4;
             this.txtPhone.TextChanged += new System.EventHandler(this.txtPhone_TextChanged);
             // 
@@ -587,14 +588,13 @@
             this.txtFirstName.FocusedState.Parent = this.txtFirstName;
             this.txtFirstName.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtFirstName.HoverState.Parent = this.txtFirstName;
-            this.txtFirstName.Location = new System.Drawing.Point(186, 73);
-            this.txtFirstName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtFirstName.Location = new System.Drawing.Point(140, 59);
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.PasswordChar = '\0';
             this.txtFirstName.PlaceholderText = "First Name";
             this.txtFirstName.SelectedText = "";
             this.txtFirstName.ShadowDecoration.Parent = this.txtFirstName;
-            this.txtFirstName.Size = new System.Drawing.Size(377, 45);
+            this.txtFirstName.Size = new System.Drawing.Size(283, 37);
             this.txtFirstName.TabIndex = 2;
             this.txtFirstName.TextChanged += new System.EventHandler(this.txtFirstName_TextChanged);
             // 
@@ -616,10 +616,11 @@
             "Ms.",
             "Mrs."});
             this.cmbPrefix.ItemsAppearance.Parent = this.cmbPrefix;
-            this.cmbPrefix.Location = new System.Drawing.Point(31, 73);
+            this.cmbPrefix.Location = new System.Drawing.Point(23, 59);
+            this.cmbPrefix.Margin = new System.Windows.Forms.Padding(2);
             this.cmbPrefix.Name = "cmbPrefix";
             this.cmbPrefix.ShadowDecoration.Parent = this.cmbPrefix;
-            this.cmbPrefix.Size = new System.Drawing.Size(148, 46);
+            this.cmbPrefix.Size = new System.Drawing.Size(112, 46);
             this.cmbPrefix.StartIndex = 0;
             this.cmbPrefix.TabIndex = 1;
             this.cmbPrefix.Tag = "Prefix";
@@ -629,9 +630,10 @@
             // 
             this.guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel1.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel1.Location = new System.Drawing.Point(31, 19);
+            this.guna2HtmlLabel1.Location = new System.Drawing.Point(23, 15);
+            this.guna2HtmlLabel1.Margin = new System.Windows.Forms.Padding(2);
             this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
-            this.guna2HtmlLabel1.Size = new System.Drawing.Size(167, 33);
+            this.guna2HtmlLabel1.Size = new System.Drawing.Size(132, 27);
             this.guna2HtmlLabel1.TabIndex = 0;
             this.guna2HtmlLabel1.Text = "Reservation Info";
             // 
@@ -640,7 +642,7 @@
             this.guna2HtmlLabel4.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel4.Location = new System.Drawing.Point(17, 23);
             this.guna2HtmlLabel4.Name = "guna2HtmlLabel4";
-            this.guna2HtmlLabel4.Size = new System.Drawing.Size(40, 18);
+            this.guna2HtmlLabel4.Size = new System.Drawing.Size(31, 15);
             this.guna2HtmlLabel4.TabIndex = 0;
             this.guna2HtmlLabel4.Text = "Room";
             // 
@@ -649,7 +651,7 @@
             this.guna2HtmlLabel2.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel2.Location = new System.Drawing.Point(17, 120);
             this.guna2HtmlLabel2.Name = "guna2HtmlLabel2";
-            this.guna2HtmlLabel2.Size = new System.Drawing.Size(33, 18);
+            this.guna2HtmlLabel2.Size = new System.Drawing.Size(27, 15);
             this.guna2HtmlLabel2.TabIndex = 1;
             this.guna2HtmlLabel2.Text = "Adult";
             // 
@@ -658,7 +660,7 @@
             this.guna2HtmlLabel3.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel3.Location = new System.Drawing.Point(17, 221);
             this.guna2HtmlLabel3.Name = "guna2HtmlLabel3";
-            this.guna2HtmlLabel3.Size = new System.Drawing.Size(33, 18);
+            this.guna2HtmlLabel3.Size = new System.Drawing.Size(26, 15);
             this.guna2HtmlLabel3.TabIndex = 2;
             this.guna2HtmlLabel3.Text = "Child";
             // 
@@ -667,7 +669,7 @@
             this.lblRoomCount.BackColor = System.Drawing.Color.Transparent;
             this.lblRoomCount.Location = new System.Drawing.Point(174, 71);
             this.lblRoomCount.Name = "lblRoomCount";
-            this.lblRoomCount.Size = new System.Drawing.Size(10, 18);
+            this.lblRoomCount.Size = new System.Drawing.Size(9, 15);
             this.lblRoomCount.TabIndex = 8;
             this.lblRoomCount.Text = "1";
             // 
@@ -676,7 +678,7 @@
             this.lblAdultCount.BackColor = System.Drawing.Color.Transparent;
             this.lblAdultCount.Location = new System.Drawing.Point(177, 165);
             this.lblAdultCount.Name = "lblAdultCount";
-            this.lblAdultCount.Size = new System.Drawing.Size(10, 18);
+            this.lblAdultCount.Size = new System.Drawing.Size(9, 15);
             this.lblAdultCount.TabIndex = 9;
             this.lblAdultCount.Text = "1";
             // 
@@ -685,18 +687,19 @@
             this.lblChildCount.BackColor = System.Drawing.Color.Transparent;
             this.lblChildCount.Location = new System.Drawing.Point(177, 254);
             this.lblChildCount.Name = "lblChildCount";
-            this.lblChildCount.Size = new System.Drawing.Size(10, 18);
+            this.lblChildCount.Size = new System.Drawing.Size(9, 15);
             this.lblChildCount.TabIndex = 10;
             this.lblChildCount.Text = "0";
             // 
             // frmNewReservation
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1146, 872);
+            this.ClientSize = new System.Drawing.Size(860, 708);
             this.Controls.Add(this.guna2Panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmNewReservation";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

@@ -45,10 +45,7 @@ namespace HotelGrandSerene.StaffModule.ModalPopup
             if (cmbRole != null)
             {
                 cmbRole.Items.Clear();
-                cmbRole.Items.Add("Receptionist");
-                cmbRole.Items.Add("Housekeeping");
-                cmbRole.Items.Add("Manager");
-                cmbRole.Items.Add("Super Admin");
+                foreach (string r in Roles.All) cmbRole.Items.Add(r);
             }
 
             // Populate Account Status ComboBox
@@ -63,7 +60,7 @@ namespace HotelGrandSerene.StaffModule.ModalPopup
         private void ConfigureControlPlaceholders()
         {
             // Lock Username field from editing
-            txtUsername.ReadOnly = true;
+            txtUsername.ReadOnly = false;
 
             // Attempt setting Guna2TextBox PlaceholderText dynamically if using Guna2 controls
             SetPlaceholderText(txtFirstName, "First Name");
@@ -165,9 +162,29 @@ namespace HotelGrandSerene.StaffModule.ModalPopup
         // --- SAVE CHANGES BUTTON ---
         private void btnSave_Click(object sender, EventArgs e)
         {
+
             if (TargetEmployeeID <= 0)
             {
                 MessageBox.Show("Invalid staff record selected.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string firstName = txtFirstName.Text.Trim();
+            string lastName = txtLastName.Text.Trim();
+            string username = txtUsername.Text.Trim();
+            string selectedRole = cmbRole.SelectedItem?.ToString() ?? Roles.FrontDesk;
+            bool isActive = (cmbAccountStatus.SelectedItem?.ToString() ?? "Active")
+                                .Equals("Active", StringComparison.OrdinalIgnoreCase);
+            bool changePassword = !string.IsNullOrWhiteSpace(txtNewPassword.Text);
+
+            if (firstName == "" || lastName == "")
+            {
+                MessageBox.Show("First and last name are required.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (username == "" || username.Contains(" "))
+            {
+                MessageBox.Show("Username is required and cannot contain spaces.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -176,39 +193,56 @@ namespace HotelGrandSerene.StaffModule.ModalPopup
                 using (SqlConnection connection = DatabaseHelper.GetConnection())
                 {
                     connection.Open();
-                    string selectedRole = cmbRole.SelectedItem?.ToString() ?? "Receptionist";
 
-                    string query = @"
-                UPDATE EMPLOYEE 
-                SET FirstName = @FirstName,
-                    LastName = @LastName,
-                    ContactNumber = @ContactNumber,
-                    Role = @Role
-                WHERE EmployeeID = @EmployeeID";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    // Safety: never allow the LAST active Super Admin to be demoted or deactivated
+                    string oldRole = "";
+                    bool oldActive = false;
+                    using (SqlCommand cmd = new SqlCommand(
+                        "SELECT Role, IsActive FROM EMPLOYEE WHERE EmployeeID = @Id", connection))
                     {
-                        command.Parameters.AddWithValue("@FirstName", txtFirstName.Text.Trim());
-                        command.Parameters.AddWithValue("@LastName", txtLastName.Text.Trim());
-                        command.Parameters.AddWithValue("@ContactNumber", txtContactNumber.Text.Trim());
-                        command.Parameters.AddWithValue("@Role", selectedRole);
-                        command.Parameters.AddWithValue("@EmployeeID", TargetEmployeeID);
-
-                        command.ExecuteNonQuery();
+                        cmd.Parameters.AddWithValue("@Id", TargetEmployeeID);
+                        using (SqlDataReader r = cmd.ExecuteReader())
+                        {
+                            if (r.Read()) { oldRole = r.GetString(0); oldActive = r.GetBoolean(1); }
+                        }
                     }
 
-                    // Password reset using the correct 'Password' column name
-                    if (!string.IsNullOrWhiteSpace(txtNewPassword.Text))
+                    bool wasActiveSuperAdmin = oldRole == "Super Admin" && oldActive;
+                    bool staysActiveSuperAdmin = selectedRole == "Super Admin" && isActive;
+                    if (wasActiveSuperAdmin && !staysActiveSuperAdmin)
                     {
-                        string passwordHash = PasswordHelper.HashPassword(txtNewPassword.Text.Trim());
-                        string pwdQuery = "UPDATE EMPLOYEE SET Password = @Password WHERE EmployeeID = @EmployeeID";
-
-                        using (SqlCommand pwdCmd = new SqlCommand(pwdQuery, connection))
+                        using (SqlCommand cmd = new SqlCommand(
+                            "SELECT COUNT(*) FROM EMPLOYEE WHERE Role = 'Super Admin' AND IsActive = 1 AND EmployeeID <> @Id", connection))
                         {
-                            pwdCmd.Parameters.AddWithValue("@Password", passwordHash);
-                            pwdCmd.Parameters.AddWithValue("@EmployeeID", TargetEmployeeID);
-                            pwdCmd.ExecuteNonQuery();
+                            cmd.Parameters.AddWithValue("@Id", TargetEmployeeID);
+                            if (Convert.ToInt32(cmd.ExecuteScalar()) == 0)
+                            {
+                                MessageBox.Show("There must always be at least one active Super Admin.",
+                                    "Not Allowed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                return;
+                            }
                         }
+                    }
+
+                    string sql = "UPDATE EMPLOYEE SET FirstName = @First, LastName = @Last, Username = @User, " +
+                                 "ContactNumber = @Contact, Role = @Role, IsActive = @Active" +
+                                 (changePassword ? ", Password = @Password" : "") +
+                                 " WHERE EmployeeID = @Id";
+
+                    using (SqlCommand command = new SqlCommand(sql, connection))
+                    {
+                        command.Parameters.AddWithValue("@First", firstName);
+                        command.Parameters.AddWithValue("@Last", lastName);
+                        command.Parameters.AddWithValue("@User", username);
+                        command.Parameters.AddWithValue("@Contact",
+                            string.IsNullOrWhiteSpace(txtContactNumber.Text) ? (object)DBNull.Value : txtContactNumber.Text.Trim());
+                        command.Parameters.AddWithValue("@Role", selectedRole);
+                        command.Parameters.AddWithValue("@Active", isActive);
+                        command.Parameters.AddWithValue("@Id", TargetEmployeeID);
+                        if (changePassword)
+                            command.Parameters.AddWithValue("@Password", PasswordHelper.HashPassword(txtNewPassword.Text.Trim()));
+
+                        command.ExecuteNonQuery();
                     }
                 }
 
@@ -216,12 +250,17 @@ namespace HotelGrandSerene.StaffModule.ModalPopup
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
+            catch (SqlException ex) when (ex.Number == 2627 || ex.Number == 2601)
+            {
+                MessageBox.Show("That username is already taken. Please choose another one.",
+                    "Duplicate Username", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             catch (Exception ex)
             {
-                MessageBox.Show("Failed to save changes to database:\n\n" + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Failed to save changes to database:\n\n" + ex.Message,
+                    "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
 
         // --- CANCEL BUTTON (Closes modal without saving) ---
         private void btnCancel_Click(object sender, EventArgs e)
@@ -233,8 +272,16 @@ namespace HotelGrandSerene.StaffModule.ModalPopup
         // --- DEACTIVATE BUTTON (Acts as Cancel/Close for now) ---
         private void btnDeactivate_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
+
+            if (MessageBox.Show("Deactivate this account? The staff member will no longer be able to log in.",
+                    "Confirm Deactivation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
+
+            SetComboBoxSelected(cmbAccountStatus, "Inactive");
+            btnSave_Click(sender, e);
+        
+            //this.DialogResult = DialogResult.Cancel;
+            //this.Close();
         }
 
         // --- TOP RIGHT CLOSE ICON (x) ---
@@ -243,5 +290,7 @@ namespace HotelGrandSerene.StaffModule.ModalPopup
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
+
+        
     }
 }

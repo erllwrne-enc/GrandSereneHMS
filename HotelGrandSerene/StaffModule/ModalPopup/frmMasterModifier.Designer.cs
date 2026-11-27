@@ -47,9 +47,10 @@
             this.guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(1)))), ((int)(((byte)(101)))));
-            this.guna2HtmlLabel1.Location = new System.Drawing.Point(40, 38);
+            this.guna2HtmlLabel1.Location = new System.Drawing.Point(30, 31);
+            this.guna2HtmlLabel1.Margin = new System.Windows.Forms.Padding(2);
             this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
-            this.guna2HtmlLabel1.Size = new System.Drawing.Size(121, 30);
+            this.guna2HtmlLabel1.Size = new System.Drawing.Size(96, 23);
             this.guna2HtmlLabel1.TabIndex = 0;
             this.guna2HtmlLabel1.Text = "Staff Details";
             // 
@@ -63,11 +64,12 @@
             this.btnCancel.ForeColor = System.Drawing.Color.White;
             this.btnCancel.HoverState.Parent = this.btnCancel;
             this.btnCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.Image")));
-            this.btnCancel.Location = new System.Drawing.Point(866, 24);
+            this.btnCancel.Location = new System.Drawing.Point(650, 20);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.btnCancel.ShadowDecoration.Parent = this.btnCancel;
-            this.btnCancel.Size = new System.Drawing.Size(38, 30);
+            this.btnCancel.Size = new System.Drawing.Size(28, 24);
             this.btnCancel.TabIndex = 1;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -86,14 +88,13 @@
             this.txtFirstName.FocusedState.Parent = this.txtFirstName;
             this.txtFirstName.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtFirstName.HoverState.Parent = this.txtFirstName;
-            this.txtFirstName.Location = new System.Drawing.Point(40, 186);
-            this.txtFirstName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtFirstName.Location = new System.Drawing.Point(30, 151);
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.PasswordChar = '\0';
             this.txtFirstName.PlaceholderText = "First Name";
             this.txtFirstName.SelectedText = "";
             this.txtFirstName.ShadowDecoration.Parent = this.txtFirstName;
-            this.txtFirstName.Size = new System.Drawing.Size(407, 44);
+            this.txtFirstName.Size = new System.Drawing.Size(305, 36);
             this.txtFirstName.TabIndex = 2;
             // 
             // txtLastName
@@ -111,14 +112,13 @@
             this.txtLastName.FocusedState.Parent = this.txtLastName;
             this.txtLastName.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtLastName.HoverState.Parent = this.txtLastName;
-            this.txtLastName.Location = new System.Drawing.Point(471, 186);
-            this.txtLastName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtLastName.Location = new System.Drawing.Point(353, 151);
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.PasswordChar = '\0';
             this.txtLastName.PlaceholderText = "Last Name";
             this.txtLastName.SelectedText = "";
             this.txtLastName.ShadowDecoration.Parent = this.txtLastName;
-            this.txtLastName.Size = new System.Drawing.Size(407, 44);
+            this.txtLastName.Size = new System.Drawing.Size(305, 36);
             this.txtLastName.TabIndex = 3;
             // 
             // txtUsername
@@ -137,15 +137,14 @@
             this.txtUsername.FocusedState.Parent = this.txtUsername;
             this.txtUsername.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtUsername.HoverState.Parent = this.txtUsername;
-            this.txtUsername.Location = new System.Drawing.Point(40, 109);
-            this.txtUsername.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUsername.Location = new System.Drawing.Point(30, 89);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.PasswordChar = '\0';
             this.txtUsername.PlaceholderText = "Username";
             this.txtUsername.ReadOnly = true;
             this.txtUsername.SelectedText = "";
             this.txtUsername.ShadowDecoration.Parent = this.txtUsername;
-            this.txtUsername.Size = new System.Drawing.Size(407, 44);
+            this.txtUsername.Size = new System.Drawing.Size(305, 36);
             this.txtUsername.TabIndex = 4;
             // 
             // txtContactNumber
@@ -163,14 +162,13 @@
             this.txtContactNumber.FocusedState.Parent = this.txtContactNumber;
             this.txtContactNumber.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtContactNumber.HoverState.Parent = this.txtContactNumber;
-            this.txtContactNumber.Location = new System.Drawing.Point(471, 109);
-            this.txtContactNumber.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtContactNumber.Location = new System.Drawing.Point(353, 89);
             this.txtContactNumber.Name = "txtContactNumber";
             this.txtContactNumber.PasswordChar = '\0';
             this.txtContactNumber.PlaceholderText = "Contact Number";
             this.txtContactNumber.SelectedText = "";
             this.txtContactNumber.ShadowDecoration.Parent = this.txtContactNumber;
-            this.txtContactNumber.Size = new System.Drawing.Size(407, 44);
+            this.txtContactNumber.Size = new System.Drawing.Size(305, 36);
             this.txtContactNumber.TabIndex = 5;
             // 
             // txtNewPassword
@@ -188,14 +186,13 @@
             this.txtNewPassword.FocusedState.Parent = this.txtNewPassword;
             this.txtNewPassword.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtNewPassword.HoverState.Parent = this.txtNewPassword;
-            this.txtNewPassword.Location = new System.Drawing.Point(40, 262);
-            this.txtNewPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNewPassword.Location = new System.Drawing.Point(30, 213);
             this.txtNewPassword.Name = "txtNewPassword";
             this.txtNewPassword.PasswordChar = '\0';
             this.txtNewPassword.PlaceholderText = "New Password";
             this.txtNewPassword.SelectedText = "";
             this.txtNewPassword.ShadowDecoration.Parent = this.txtNewPassword;
-            this.txtNewPassword.Size = new System.Drawing.Size(407, 44);
+            this.txtNewPassword.Size = new System.Drawing.Size(305, 36);
             this.txtNewPassword.TabIndex = 6;
             // 
             // cmbRole
@@ -213,10 +210,11 @@
             this.cmbRole.HoverState.Parent = this.cmbRole;
             this.cmbRole.ItemHeight = 38;
             this.cmbRole.ItemsAppearance.Parent = this.cmbRole;
-            this.cmbRole.Location = new System.Drawing.Point(471, 262);
+            this.cmbRole.Location = new System.Drawing.Point(353, 213);
+            this.cmbRole.Margin = new System.Windows.Forms.Padding(2);
             this.cmbRole.Name = "cmbRole";
             this.cmbRole.ShadowDecoration.Parent = this.cmbRole;
-            this.cmbRole.Size = new System.Drawing.Size(200, 44);
+            this.cmbRole.Size = new System.Drawing.Size(151, 44);
             this.cmbRole.TabIndex = 7;
             // 
             // cmbAccountStatus
@@ -234,10 +232,11 @@
             this.cmbAccountStatus.HoverState.Parent = this.cmbAccountStatus;
             this.cmbAccountStatus.ItemHeight = 38;
             this.cmbAccountStatus.ItemsAppearance.Parent = this.cmbAccountStatus;
-            this.cmbAccountStatus.Location = new System.Drawing.Point(677, 262);
+            this.cmbAccountStatus.Location = new System.Drawing.Point(508, 213);
+            this.cmbAccountStatus.Margin = new System.Windows.Forms.Padding(2);
             this.cmbAccountStatus.Name = "cmbAccountStatus";
             this.cmbAccountStatus.ShadowDecoration.Parent = this.cmbAccountStatus;
-            this.cmbAccountStatus.Size = new System.Drawing.Size(201, 44);
+            this.cmbAccountStatus.Size = new System.Drawing.Size(152, 44);
             this.cmbAccountStatus.TabIndex = 8;
             // 
             // btnDeactivate
@@ -249,10 +248,11 @@
             this.btnDeactivate.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeactivate.ForeColor = System.Drawing.Color.White;
             this.btnDeactivate.HoverState.Parent = this.btnDeactivate;
-            this.btnDeactivate.Location = new System.Drawing.Point(40, 347);
+            this.btnDeactivate.Location = new System.Drawing.Point(30, 282);
+            this.btnDeactivate.Margin = new System.Windows.Forms.Padding(2);
             this.btnDeactivate.Name = "btnDeactivate";
             this.btnDeactivate.ShadowDecoration.Parent = this.btnDeactivate;
-            this.btnDeactivate.Size = new System.Drawing.Size(407, 45);
+            this.btnDeactivate.Size = new System.Drawing.Size(305, 37);
             this.btnDeactivate.TabIndex = 9;
             this.btnDeactivate.Text = "Deactivate";
             this.btnDeactivate.Click += new System.EventHandler(this.btnDeactivate_Click);
@@ -266,20 +266,21 @@
             this.btnSave.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.Color.White;
             this.btnSave.HoverState.Parent = this.btnSave;
-            this.btnSave.Location = new System.Drawing.Point(471, 347);
+            this.btnSave.Location = new System.Drawing.Point(353, 282);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(2);
             this.btnSave.Name = "btnSave";
             this.btnSave.ShadowDecoration.Parent = this.btnSave;
-            this.btnSave.Size = new System.Drawing.Size(407, 45);
+            this.btnSave.Size = new System.Drawing.Size(305, 37);
             this.btnSave.TabIndex = 10;
             this.btnSave.Text = "Save Changes";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // frmMasterModifier
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(926, 415);
+            this.ClientSize = new System.Drawing.Size(694, 337);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnDeactivate);
             this.Controls.Add(this.cmbAccountStatus);
@@ -292,6 +293,7 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.guna2HtmlLabel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmMasterModifier";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmMasterModifier";

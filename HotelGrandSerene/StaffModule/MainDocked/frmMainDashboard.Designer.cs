@@ -64,13 +64,14 @@
             this.pnlDashmain.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pnlDashmain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlDashmain.FillColor = System.Drawing.Color.SeaShell;
-            this.pnlDashmain.Location = new System.Drawing.Point(338, 129);
+            this.pnlDashmain.Location = new System.Drawing.Point(254, 105);
+            this.pnlDashmain.Margin = new System.Windows.Forms.Padding(2);
             this.pnlDashmain.Name = "pnlDashmain";
             this.pnlDashmain.ShadowDecoration.BorderRadius = 10;
             this.pnlDashmain.ShadowDecoration.Color = System.Drawing.SystemColors.ControlDarkDark;
             this.pnlDashmain.ShadowDecoration.Enabled = true;
             this.pnlDashmain.ShadowDecoration.Parent = this.pnlDashmain;
-            this.pnlDashmain.Size = new System.Drawing.Size(1564, 904);
+            this.pnlDashmain.Size = new System.Drawing.Size(1172, 734);
             this.pnlDashmain.TabIndex = 2;
             this.pnlDashmain.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlDashmain_Paint);
             // 
@@ -89,21 +90,23 @@
             this.pnlToppanel.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(1)))), ((int)(((byte)(101)))));
             this.pnlToppanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(1)))), ((int)(((byte)(101)))));
             this.pnlToppanel.Location = new System.Drawing.Point(0, 0);
+            this.pnlToppanel.Margin = new System.Windows.Forms.Padding(2);
             this.pnlToppanel.Name = "pnlToppanel";
             this.pnlToppanel.ShadowDecoration.BorderRadius = 5;
             this.pnlToppanel.ShadowDecoration.Enabled = true;
             this.pnlToppanel.ShadowDecoration.Parent = this.pnlToppanel;
-            this.pnlToppanel.Size = new System.Drawing.Size(1902, 129);
+            this.pnlToppanel.Size = new System.Drawing.Size(1426, 105);
             this.pnlToppanel.TabIndex = 1;
             // 
             // guna2PictureBox1
             // 
             this.guna2PictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.guna2PictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("guna2PictureBox1.Image")));
-            this.guna2PictureBox1.Location = new System.Drawing.Point(41, -15);
+            this.guna2PictureBox1.Location = new System.Drawing.Point(31, -12);
+            this.guna2PictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.guna2PictureBox1.Name = "guna2PictureBox1";
             this.guna2PictureBox1.ShadowDecoration.Parent = this.guna2PictureBox1;
-            this.guna2PictureBox1.Size = new System.Drawing.Size(135, 121);
+            this.guna2PictureBox1.Size = new System.Drawing.Size(101, 98);
             this.guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.guna2PictureBox1.TabIndex = 7;
             this.guna2PictureBox1.TabStop = false;
@@ -113,11 +116,12 @@
             // 
             this.picProfile.BackColor = System.Drawing.Color.Transparent;
             this.picProfile.FillColor = System.Drawing.Color.White;
-            this.picProfile.Location = new System.Drawing.Point(1766, 42);
+            this.picProfile.Location = new System.Drawing.Point(1324, 34);
+            this.picProfile.Margin = new System.Windows.Forms.Padding(2);
             this.picProfile.Name = "picProfile";
             this.picProfile.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.picProfile.ShadowDecoration.Parent = this.picProfile;
-            this.picProfile.Size = new System.Drawing.Size(43, 40);
+            this.picProfile.Size = new System.Drawing.Size(32, 32);
             this.picProfile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picProfile.TabIndex = 5;
             this.picProfile.TabStop = false;
@@ -127,10 +131,11 @@
             // 
             this.PicNotif.BackColor = System.Drawing.Color.Transparent;
             this.PicNotif.Image = ((System.Drawing.Image)(resources.GetObject("PicNotif.Image")));
-            this.PicNotif.Location = new System.Drawing.Point(1674, 42);
+            this.PicNotif.Location = new System.Drawing.Point(1256, 34);
+            this.PicNotif.Margin = new System.Windows.Forms.Padding(2);
             this.PicNotif.Name = "PicNotif";
             this.PicNotif.ShadowDecoration.Parent = this.PicNotif;
-            this.PicNotif.Size = new System.Drawing.Size(41, 40);
+            this.PicNotif.Size = new System.Drawing.Size(31, 32);
             this.PicNotif.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.PicNotif.TabIndex = 4;
             this.PicNotif.TabStop = false;
@@ -149,10 +154,11 @@
             this.btnNewReservation.HoverState.Parent = this.btnNewReservation;
             this.btnNewReservation.Image = ((System.Drawing.Image)(resources.GetObject("btnNewReservation.Image")));
             this.btnNewReservation.ImageOffset = new System.Drawing.Point(-4, 0);
-            this.btnNewReservation.Location = new System.Drawing.Point(1404, 42);
+            this.btnNewReservation.Location = new System.Drawing.Point(1053, 34);
+            this.btnNewReservation.Margin = new System.Windows.Forms.Padding(2);
             this.btnNewReservation.Name = "btnNewReservation";
             this.btnNewReservation.ShadowDecoration.Parent = this.btnNewReservation;
-            this.btnNewReservation.Size = new System.Drawing.Size(224, 40);
+            this.btnNewReservation.Size = new System.Drawing.Size(168, 32);
             this.btnNewReservation.TabIndex = 3;
             this.btnNewReservation.Text = "New Reservation";
             this.btnNewReservation.TextOffset = new System.Drawing.Point(2, 0);
@@ -163,9 +169,10 @@
             this.guna2HtmlLabel2.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel2.ForeColor = System.Drawing.Color.White;
-            this.guna2HtmlLabel2.Location = new System.Drawing.Point(194, 70);
+            this.guna2HtmlLabel2.Location = new System.Drawing.Point(146, 57);
+            this.guna2HtmlLabel2.Margin = new System.Windows.Forms.Padding(2);
             this.guna2HtmlLabel2.Name = "guna2HtmlLabel2";
-            this.guna2HtmlLabel2.Size = new System.Drawing.Size(48, 22);
+            this.guna2HtmlLabel2.Size = new System.Drawing.Size(39, 17);
             this.guna2HtmlLabel2.TabIndex = 1;
             this.guna2HtmlLabel2.Text = "HOTEL";
             this.guna2HtmlLabel2.Click += new System.EventHandler(this.guna2HtmlLabel2_Click);
@@ -175,9 +182,10 @@
             this.guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel1.ForeColor = System.Drawing.Color.White;
-            this.guna2HtmlLabel1.Location = new System.Drawing.Point(194, 42);
+            this.guna2HtmlLabel1.Location = new System.Drawing.Point(146, 34);
+            this.guna2HtmlLabel1.Margin = new System.Windows.Forms.Padding(2);
             this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
-            this.guna2HtmlLabel1.Size = new System.Drawing.Size(116, 22);
+            this.guna2HtmlLabel1.Size = new System.Drawing.Size(91, 17);
             this.guna2HtmlLabel1.TabIndex = 0;
             this.guna2HtmlLabel1.Text = "GRAND SERENE";
             // 
@@ -186,9 +194,10 @@
             this.lblCurrentDate.BackColor = System.Drawing.Color.Transparent;
             this.lblCurrentDate.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCurrentDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(1)))), ((int)(((byte)(101)))));
-            this.lblCurrentDate.Location = new System.Drawing.Point(30, 100);
+            this.lblCurrentDate.Location = new System.Drawing.Point(22, 81);
+            this.lblCurrentDate.Margin = new System.Windows.Forms.Padding(2);
             this.lblCurrentDate.Name = "lblCurrentDate";
-            this.lblCurrentDate.Size = new System.Drawing.Size(128, 22);
+            this.lblCurrentDate.Size = new System.Drawing.Size(101, 17);
             this.lblCurrentDate.TabIndex = 2;
             this.lblCurrentDate.Text = "guna2HtmlLabel4";
             this.lblCurrentDate.Click += new System.EventHandler(this.lblCurrentDate_Click);
@@ -198,9 +207,10 @@
             this.guna2HtmlLabel3.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel3.Font = new System.Drawing.Font("Bodoni MT", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(1)))), ((int)(((byte)(101)))));
-            this.guna2HtmlLabel3.Location = new System.Drawing.Point(48, 56);
+            this.guna2HtmlLabel3.Location = new System.Drawing.Point(36, 46);
+            this.guna2HtmlLabel3.Margin = new System.Windows.Forms.Padding(2);
             this.guna2HtmlLabel3.Name = "guna2HtmlLabel3";
-            this.guna2HtmlLabel3.Size = new System.Drawing.Size(220, 38);
+            this.guna2HtmlLabel3.Size = new System.Drawing.Size(178, 30);
             this.guna2HtmlLabel3.TabIndex = 1;
             this.guna2HtmlLabel3.Text = "Today\'s Overview";
             this.guna2HtmlLabel3.Click += new System.EventHandler(this.guna2HtmlLabel3_Click);
@@ -220,14 +230,15 @@
             this.pnlLeftpanel.Controls.Add(this.guna2HtmlLabel3);
             this.pnlLeftpanel.Controls.Add(this.btnDashboard);
             this.pnlLeftpanel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnlLeftpanel.Location = new System.Drawing.Point(0, 129);
+            this.pnlLeftpanel.Location = new System.Drawing.Point(0, 105);
+            this.pnlLeftpanel.Margin = new System.Windows.Forms.Padding(2);
             this.pnlLeftpanel.Name = "pnlLeftpanel";
-            this.pnlLeftpanel.Padding = new System.Windows.Forms.Padding(3);
+            this.pnlLeftpanel.Padding = new System.Windows.Forms.Padding(2);
             this.pnlLeftpanel.ShadowDecoration.BorderRadius = 20;
             this.pnlLeftpanel.ShadowDecoration.Enabled = true;
             this.pnlLeftpanel.ShadowDecoration.Parent = this.pnlLeftpanel;
             this.pnlLeftpanel.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(0);
-            this.pnlLeftpanel.Size = new System.Drawing.Size(338, 904);
+            this.pnlLeftpanel.Size = new System.Drawing.Size(254, 734);
             this.pnlLeftpanel.TabIndex = 0;
             this.pnlLeftpanel.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlLeftpanel_Paint);
             // 
@@ -247,12 +258,13 @@
             this.btnSuperAdmin.Image = ((System.Drawing.Image)(resources.GetObject("btnSuperAdmin.Image")));
             this.btnSuperAdmin.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnSuperAdmin.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnSuperAdmin.Location = new System.Drawing.Point(22, 708);
+            this.btnSuperAdmin.Location = new System.Drawing.Point(16, 575);
+            this.btnSuperAdmin.Margin = new System.Windows.Forms.Padding(2);
             this.btnSuperAdmin.Name = "btnSuperAdmin";
             this.btnSuperAdmin.ShadowDecoration.Parent = this.btnSuperAdmin;
-            this.btnSuperAdmin.Size = new System.Drawing.Size(294, 66);
+            this.btnSuperAdmin.Size = new System.Drawing.Size(220, 54);
             this.btnSuperAdmin.TabIndex = 8;
-            this.btnSuperAdmin.Text = "Super Admin";
+            this.btnSuperAdmin.Text = "Staff Management";
             this.btnSuperAdmin.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnSuperAdmin.TextOffset = new System.Drawing.Point(15, 0);
             this.btnSuperAdmin.Click += new System.EventHandler(this.btnSuperAdmin_Click);
@@ -273,10 +285,11 @@
             this.btnStaff.Image = ((System.Drawing.Image)(resources.GetObject("btnStaff.Image")));
             this.btnStaff.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnStaff.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnStaff.Location = new System.Drawing.Point(22, 631);
+            this.btnStaff.Location = new System.Drawing.Point(16, 513);
+            this.btnStaff.Margin = new System.Windows.Forms.Padding(2);
             this.btnStaff.Name = "btnStaff";
             this.btnStaff.ShadowDecoration.Parent = this.btnStaff;
-            this.btnStaff.Size = new System.Drawing.Size(294, 66);
+            this.btnStaff.Size = new System.Drawing.Size(220, 54);
             this.btnStaff.TabIndex = 7;
             this.btnStaff.Text = "Staff";
             this.btnStaff.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -299,10 +312,11 @@
             this.btnFinance.Image = ((System.Drawing.Image)(resources.GetObject("btnFinance.Image")));
             this.btnFinance.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnFinance.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnFinance.Location = new System.Drawing.Point(22, 537);
+            this.btnFinance.Location = new System.Drawing.Point(16, 436);
+            this.btnFinance.Margin = new System.Windows.Forms.Padding(2);
             this.btnFinance.Name = "btnFinance";
             this.btnFinance.ShadowDecoration.Parent = this.btnFinance;
-            this.btnFinance.Size = new System.Drawing.Size(294, 66);
+            this.btnFinance.Size = new System.Drawing.Size(220, 54);
             this.btnFinance.TabIndex = 6;
             this.btnFinance.Text = "Finance";
             this.btnFinance.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -325,10 +339,11 @@
             this.btnGuests.Image = ((System.Drawing.Image)(resources.GetObject("btnGuests.Image")));
             this.btnGuests.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnGuests.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnGuests.Location = new System.Drawing.Point(22, 448);
+            this.btnGuests.Location = new System.Drawing.Point(16, 364);
+            this.btnGuests.Margin = new System.Windows.Forms.Padding(2);
             this.btnGuests.Name = "btnGuests";
             this.btnGuests.ShadowDecoration.Parent = this.btnGuests;
-            this.btnGuests.Size = new System.Drawing.Size(294, 66);
+            this.btnGuests.Size = new System.Drawing.Size(220, 54);
             this.btnGuests.TabIndex = 5;
             this.btnGuests.Text = "Guests";
             this.btnGuests.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -351,10 +366,11 @@
             this.btnRooms.Image = ((System.Drawing.Image)(resources.GetObject("btnRooms.Image")));
             this.btnRooms.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnRooms.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnRooms.Location = new System.Drawing.Point(22, 357);
+            this.btnRooms.Location = new System.Drawing.Point(16, 290);
+            this.btnRooms.Margin = new System.Windows.Forms.Padding(2);
             this.btnRooms.Name = "btnRooms";
             this.btnRooms.ShadowDecoration.Parent = this.btnRooms;
-            this.btnRooms.Size = new System.Drawing.Size(294, 66);
+            this.btnRooms.Size = new System.Drawing.Size(220, 54);
             this.btnRooms.TabIndex = 4;
             this.btnRooms.Text = "Rooms";
             this.btnRooms.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -377,10 +393,11 @@
             this.btnReservation.Image = ((System.Drawing.Image)(resources.GetObject("btnReservation.Image")));
             this.btnReservation.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnReservation.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnReservation.Location = new System.Drawing.Point(22, 272);
+            this.btnReservation.Location = new System.Drawing.Point(16, 221);
+            this.btnReservation.Margin = new System.Windows.Forms.Padding(2);
             this.btnReservation.Name = "btnReservation";
             this.btnReservation.ShadowDecoration.Parent = this.btnReservation;
-            this.btnReservation.Size = new System.Drawing.Size(294, 66);
+            this.btnReservation.Size = new System.Drawing.Size(220, 54);
             this.btnReservation.TabIndex = 3;
             this.btnReservation.Text = "Reservations";
             this.btnReservation.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -404,10 +421,11 @@
             this.btnDashboard.Image = ((System.Drawing.Image)(resources.GetObject("btnDashboard.Image")));
             this.btnDashboard.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnDashboard.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnDashboard.Location = new System.Drawing.Point(22, 185);
+            this.btnDashboard.Location = new System.Drawing.Point(16, 150);
+            this.btnDashboard.Margin = new System.Windows.Forms.Padding(2);
             this.btnDashboard.Name = "btnDashboard";
             this.btnDashboard.ShadowDecoration.Parent = this.btnDashboard;
-            this.btnDashboard.Size = new System.Drawing.Size(294, 66);
+            this.btnDashboard.Size = new System.Drawing.Size(220, 54);
             this.btnDashboard.TabIndex = 2;
             this.btnDashboard.Text = "Dashboard";
             this.btnDashboard.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -422,25 +440,26 @@
             this.signOutToolStripMenuItem});
             this.cmsProfileMenu.Name = "cmsProfileMenu";
             this.cmsProfileMenu.ShowImageMargin = false;
-            this.cmsProfileMenu.Size = new System.Drawing.Size(111, 28);
+            this.cmsProfileMenu.Size = new System.Drawing.Size(96, 26);
             this.cmsProfileMenu.Opening += new System.ComponentModel.CancelEventHandler(this.cmsProfileMenu_Opening);
             // 
             // signOutToolStripMenuItem
             // 
             this.signOutToolStripMenuItem.Name = "signOutToolStripMenuItem";
-            this.signOutToolStripMenuItem.Size = new System.Drawing.Size(110, 24);
+            this.signOutToolStripMenuItem.Size = new System.Drawing.Size(95, 22);
             this.signOutToolStripMenuItem.Text = "Sign Out";
             this.signOutToolStripMenuItem.Click += new System.EventHandler(this.signOutToolStripMenuItem_Click);
             // 
             // frmMainDashboard
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1902, 1033);
+            this.ClientSize = new System.Drawing.Size(1426, 839);
             this.Controls.Add(this.pnlDashmain);
             this.Controls.Add(this.pnlLeftpanel);
             this.Controls.Add(this.pnlToppanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmMainDashboard";
             this.Text = "frmMainDashboard";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
