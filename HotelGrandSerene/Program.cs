@@ -1,4 +1,5 @@
 ﻿using GrandSereneHotel.DashboardModule.MainDocked;
+using GrandSereneHotel.DatabaseAccess;
 using GrandSereneHotel.LoginModule;
 using HotelGrandSerene.CustomerModule;
 using HotelGrandSerene.LoginModule;

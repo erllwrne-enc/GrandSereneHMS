@@ -56,9 +56,10 @@
             this.guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel1.Font = new System.Drawing.Font("Bodoni MT", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(1)))), ((int)(((byte)(101)))));
-            this.guna2HtmlLabel1.Location = new System.Drawing.Point(60, 64);
+            this.guna2HtmlLabel1.Location = new System.Drawing.Point(45, 52);
+            this.guna2HtmlLabel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
-            this.guna2HtmlLabel1.Size = new System.Drawing.Size(295, 34);
+            this.guna2HtmlLabel1.Size = new System.Drawing.Size(226, 27);
             this.guna2HtmlLabel1.TabIndex = 0;
             this.guna2HtmlLabel1.Text = "User & Staff Management";
             // 
@@ -72,10 +73,11 @@
             this.guna2Panel4.Controls.Add(this.guna2Panel1);
             this.guna2Panel4.Controls.Add(this.dgvStaff);
             this.guna2Panel4.FillColor = System.Drawing.Color.White;
-            this.guna2Panel4.Location = new System.Drawing.Point(25, 216);
+            this.guna2Panel4.Location = new System.Drawing.Point(19, 176);
+            this.guna2Panel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2Panel4.Name = "guna2Panel4";
             this.guna2Panel4.ShadowDecoration.Parent = this.guna2Panel4;
-            this.guna2Panel4.Size = new System.Drawing.Size(1510, 559);
+            this.guna2Panel4.Size = new System.Drawing.Size(1132, 454);
             this.guna2Panel4.TabIndex = 2;
             this.guna2Panel4.UseTransparentBackground = true;
             // 
@@ -90,10 +92,11 @@
             this.btnModifyAddAcc.ForeColor = System.Drawing.Color.White;
             this.btnModifyAddAcc.HoverState.Parent = this.btnModifyAddAcc;
             this.btnModifyAddAcc.ImageOffset = new System.Drawing.Point(-4, 0);
-            this.btnModifyAddAcc.Location = new System.Drawing.Point(1262, 21);
+            this.btnModifyAddAcc.Location = new System.Drawing.Point(946, 17);
+            this.btnModifyAddAcc.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnModifyAddAcc.Name = "btnModifyAddAcc";
             this.btnModifyAddAcc.ShadowDecoration.Parent = this.btnModifyAddAcc;
-            this.btnModifyAddAcc.Size = new System.Drawing.Size(224, 40);
+            this.btnModifyAddAcc.Size = new System.Drawing.Size(168, 32);
             this.btnModifyAddAcc.TabIndex = 4;
             this.btnModifyAddAcc.Text = "Modify | Add Account";
             this.btnModifyAddAcc.TextOffset = new System.Drawing.Point(2, 0);
@@ -108,10 +111,11 @@
             this.guna2Panel1.Controls.Add(this.guna2HtmlLabel4);
             this.guna2Panel1.Controls.Add(this.guna2HtmlLabel7);
             this.guna2Panel1.FillColor = System.Drawing.Color.SeaShell;
-            this.guna2Panel1.Location = new System.Drawing.Point(3, 76);
+            this.guna2Panel1.Location = new System.Drawing.Point(2, 62);
+            this.guna2Panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2Panel1.Name = "guna2Panel1";
             this.guna2Panel1.ShadowDecoration.Parent = this.guna2Panel1;
-            this.guna2Panel1.Size = new System.Drawing.Size(1504, 54);
+            this.guna2Panel1.Size = new System.Drawing.Size(1128, 44);
             this.guna2Panel1.TabIndex = 5;
             // 
             // guna2HtmlLabel8
@@ -119,9 +123,10 @@
             this.guna2HtmlLabel8.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel8.Font = new System.Drawing.Font("Segoe UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel8.ForeColor = System.Drawing.Color.Gray;
-            this.guna2HtmlLabel8.Location = new System.Drawing.Point(1227, 18);
+            this.guna2HtmlLabel8.Location = new System.Drawing.Point(920, 15);
+            this.guna2HtmlLabel8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2HtmlLabel8.Name = "guna2HtmlLabel8";
-            this.guna2HtmlLabel8.Size = new System.Drawing.Size(62, 19);
+            this.guna2HtmlLabel8.Size = new System.Drawing.Size(52, 15);
             this.guna2HtmlLabel8.TabIndex = 5;
             this.guna2HtmlLabel8.Text = "CONTACT";
             // 
@@ -130,9 +135,10 @@
             this.guna2HtmlLabel6.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel6.Font = new System.Drawing.Font("Segoe UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel6.ForeColor = System.Drawing.Color.Gray;
-            this.guna2HtmlLabel6.Location = new System.Drawing.Point(922, 18);
+            this.guna2HtmlLabel6.Location = new System.Drawing.Point(692, 15);
+            this.guna2HtmlLabel6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2HtmlLabel6.Name = "guna2HtmlLabel6";
-            this.guna2HtmlLabel6.Size = new System.Drawing.Size(114, 19);
+            this.guna2HtmlLabel6.Size = new System.Drawing.Size(96, 15);
             this.guna2HtmlLabel6.TabIndex = 4;
             this.guna2HtmlLabel6.Text = "ACCOUNT STATUS";
             // 
@@ -141,9 +147,10 @@
             this.guna2HtmlLabel5.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel5.Font = new System.Drawing.Font("Segoe UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel5.ForeColor = System.Drawing.Color.Gray;
-            this.guna2HtmlLabel5.Location = new System.Drawing.Point(616, 18);
+            this.guna2HtmlLabel5.Location = new System.Drawing.Point(462, 15);
+            this.guna2HtmlLabel5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2HtmlLabel5.Name = "guna2HtmlLabel5";
-            this.guna2HtmlLabel5.Size = new System.Drawing.Size(38, 19);
+            this.guna2HtmlLabel5.Size = new System.Drawing.Size(32, 15);
             this.guna2HtmlLabel5.TabIndex = 3;
             this.guna2HtmlLabel5.Text = "SHIFT";
             // 
@@ -152,9 +159,10 @@
             this.guna2HtmlLabel4.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel4.Font = new System.Drawing.Font("Segoe UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel4.ForeColor = System.Drawing.Color.Gray;
-            this.guna2HtmlLabel4.Location = new System.Drawing.Point(315, 18);
+            this.guna2HtmlLabel4.Location = new System.Drawing.Point(236, 15);
+            this.guna2HtmlLabel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2HtmlLabel4.Name = "guna2HtmlLabel4";
-            this.guna2HtmlLabel4.Size = new System.Drawing.Size(34, 19);
+            this.guna2HtmlLabel4.Size = new System.Drawing.Size(29, 15);
             this.guna2HtmlLabel4.TabIndex = 2;
             this.guna2HtmlLabel4.Text = "ROLE";
             // 
@@ -163,9 +171,10 @@
             this.guna2HtmlLabel7.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel7.Font = new System.Drawing.Font("Segoe UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel7.ForeColor = System.Drawing.Color.Gray;
-            this.guna2HtmlLabel7.Location = new System.Drawing.Point(26, 18);
+            this.guna2HtmlLabel7.Location = new System.Drawing.Point(20, 15);
+            this.guna2HtmlLabel7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2HtmlLabel7.Name = "guna2HtmlLabel7";
-            this.guna2HtmlLabel7.Size = new System.Drawing.Size(98, 19);
+            this.guna2HtmlLabel7.Size = new System.Drawing.Size(83, 15);
             this.guna2HtmlLabel7.TabIndex = 1;
             this.guna2HtmlLabel7.Text = "STAFF MEMBER";
             // 
@@ -206,14 +215,15 @@
             this.dgvStaff.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvStaff.EnableHeadersVisualStyles = false;
             this.dgvStaff.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dgvStaff.Location = new System.Drawing.Point(12, 146);
+            this.dgvStaff.Location = new System.Drawing.Point(9, 119);
+            this.dgvStaff.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dgvStaff.Name = "dgvStaff";
             this.dgvStaff.ReadOnly = true;
             this.dgvStaff.RowHeadersVisible = false;
             this.dgvStaff.RowHeadersWidth = 51;
             this.dgvStaff.RowTemplate.Height = 24;
             this.dgvStaff.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvStaff.Size = new System.Drawing.Size(1483, 395);
+            this.dgvStaff.Size = new System.Drawing.Size(1112, 321);
             this.dgvStaff.TabIndex = 4;
             this.dgvStaff.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
             this.dgvStaff.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -237,7 +247,6 @@
             this.dgvStaff.ThemeStyle.RowsStyle.Height = 24;
             this.dgvStaff.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvStaff.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            this.dgvStaff.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvStaff_CellContentClick_1);
             // 
             // colStaffMember
             // 
@@ -276,13 +285,14 @@
             // 
             // ucSuperAdmin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SeaShell;
             this.Controls.Add(this.guna2Panel4);
             this.Controls.Add(this.guna2HtmlLabel1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "ucSuperAdmin";
-            this.Size = new System.Drawing.Size(1564, 904);
+            this.Size = new System.Drawing.Size(1173, 734);
             this.Load += new System.EventHandler(this.ucSuperAdmin_Load_1);
             this.guna2Panel4.ResumeLayout(false);
             this.guna2Panel1.ResumeLayout(false);

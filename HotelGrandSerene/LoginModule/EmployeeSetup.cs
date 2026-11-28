@@ -42,45 +42,56 @@ namespace GrandSereneHotel.LoginModule
                     {
                         using (SqlCommand command =
                                new SqlCommand(@"
-SET XACT_ABORT ON;
+                                SET XACT_ABORT ON;
 
-IF EXISTS (SELECT 1 FROM EMPLOYEE WITH (UPDLOCK, HOLDLOCK))
-    THROW 50001, 'An employee account already exists.', 1;
+                                IF EXISTS (SELECT 1 FROM EMPLOYEE WITH (UPDLOCK, HOLDLOCK))
+                                    THROW 50001, 'An employee account already exists.', 1;
 
-INSERT INTO EMPLOYEE
-    (FirstName, LastName, Username, Password, Role, ContactNumber)
-VALUES
-    (@FirstName, @LastName, @Username, @Password, 'Admin', @ContactNumber);",
+                                INSERT INTO EMPLOYEE
+                                    (FirstName, LastName, Username, Password, Role, ContactNumber)
+                                VALUES
+                                    (@FirstName, @LastName, @Username, @Password, 'Super Admin', @ContactNumber);",
                                connection, transaction))
                         {
-                            command.Parameters.AddWithValue(
-                                "@FirstName", firstName.Trim());
+                        command.Parameters.AddWithValue(
+                            "@FirstName", firstName.Trim());
 
-                            command.Parameters.AddWithValue(
-                                "@LastName", lastName.Trim());
+                        command.Parameters.AddWithValue(
+                            "@LastName", lastName.Trim());
 
-                            command.Parameters.AddWithValue(
-                                "@Username", username.Trim());
+                        command.Parameters.AddWithValue(
+                            "@Username", username.Trim());
 
-                            command.Parameters.AddWithValue(
-                                "@Password", passwordHash);
+                        command.Parameters.AddWithValue(
+                            "@Password", passwordHash);
 
-                            command.Parameters.AddWithValue(
-                                "@ContactNumber",
-                                string.IsNullOrWhiteSpace(contactNumber)
-                                    ? (object)DBNull.Value
-                                    : contactNumber.Trim());
+                        command.Parameters.AddWithValue(
+                            "@ContactNumber",
+                            string.IsNullOrWhiteSpace(contactNumber)
+                                ? (object)DBNull.Value
+                                : contactNumber.Trim());
 
-                            command.ExecuteNonQuery();
+                        command.ExecuteNonQuery();
                         }
 
-                        transaction.Commit();
+                    transaction.Commit();
                     }
                     catch
                     {
-                        transaction.Rollback();
-                        throw;
+                    transaction.Rollback();
+                    throw;
                     }
+                }
+            }
+        }
+        public static bool AnyEmployeeExists()
+        {
+            using (SqlConnection connection = DatabaseHelper.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand("SELECT COUNT(*) FROM EMPLOYEE", connection))
+                {
+                return Convert.ToInt32(command.ExecuteScalar()) > 0;
                 }
             }
         }

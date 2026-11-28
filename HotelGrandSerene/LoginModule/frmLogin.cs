@@ -25,18 +25,7 @@ namespace GrandSereneHotel.LoginModule
             // Set Enter key to trigger sign-in button automatically
             this.AcceptButton = btnSignin;
 
-            // Wire KeyDown events for smooth Enter-key execution
-            if (txtbUsername != null)
-            {
-                txtbUsername.KeyDown -= txtbUsername_KeyDown;
-                txtbUsername.KeyDown += txtbUsername_KeyDown;
-            }
-
-            if (txtbPassword != null)
-            {
-                txtbPassword.KeyDown -= txtbPassword_KeyDown;
-                txtbPassword.KeyDown += txtbPassword_KeyDown;
-            }
+           
         }
 
         private void btnSignin_Click(object sender, EventArgs e)
@@ -44,34 +33,22 @@ namespace GrandSereneHotel.LoginModule
             PerformLogin();
         }
 
-        private void txtbUsername_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.SuppressKeyPress = true; // Prevent Windows beep sound
-                PerformLogin();
-            }
-        }
 
-        private void txtbPassword_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.SuppressKeyPress = true; // Prevent Windows beep sound
-                PerformLogin();
-            }
-        }
+        private bool _busy;   // stays true after a successful login so it can never run twice
 
         private void PerformLogin()
         {
+            if (_busy) return;
+            _busy = true;
+
             string username = txtbUsername.Text.Trim();
             string password = txtbPassword.Text.Trim();
 
-            // 1. Input Validation
             if (string.IsNullOrEmpty(username))
             {
                 MessageBox.Show("Please enter your username.", "Login Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtbUsername.Focus();
+                _busy = false;
                 return;
             }
 
@@ -79,73 +56,76 @@ namespace GrandSereneHotel.LoginModule
             {
                 MessageBox.Show("Please enter your password.", "Login Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtbPassword.Focus();
+                _busy = false;
                 return;
             }
 
-            // 2. Security / Authentication Check
-            if (ValidateUserCredentials(username, password))
+            string error;
+            if (ValidateUserCredentials(username, password, out error))
             {
-                MessageBox.Show("Login successful! Welcome to Hotel Grand Serene.", "Access Granted", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                // 3. Open Main Dashboard first
+                // No "Welcome" pop-up any more: the dashboard opening is the confirmation.
                 frmMainDashboard dashboard = new frmMainDashboard();
-
-                // Hide login window
                 this.Hide();
-
-                // 4. Clear textboxes AFTER hiding so TextChanged events don't trigger validation popups
                 txtbUsername.Clear();
                 txtbPassword.Clear();
-
-                // Show dashboard
                 dashboard.Show();
+                // _busy intentionally stays true: after Sign Out a NEW frmLogin is created.
             }
             else
             {
-                MessageBox.Show("Invalid username or password. Please try again.", "Authentication Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(error, "Authentication Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtbPassword.Clear();
                 txtbPassword.Focus();
+                _busy = false;
             }
         }
 
-
-        /// <summary>
-        /// Validates username and password against allowed credentials.
-        /// </summary>
-        private bool ValidateUserCredentials(string username, string password)
+        private bool ValidateUserCredentials(string username, string password, out string error)
         {
+            error = "Invalid username or password. Please try again.";
             try
             {
                 using (SqlConnection connection = DatabaseHelper.GetConnection())
                 {
                     connection.Open();
-
-                    string query = @"
-                        SELECT Password 
-                        FROM EMPLOYEE 
-                        WHERE Username = @Username";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand(
+                        @"SELECT EmployeeID, FirstName, LastName, Role, Password, IsActive
+                  FROM EMPLOYEE WHERE Username = @Username", connection))
                     {
                         command.Parameters.AddWithValue("@Username", username);
 
-                        object result = command.ExecuteScalar();
-                        if (result == null || result == DBNull.Value) return false;
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (!reader.Read()) return false;
 
-                        string storedHash = result.ToString();
-                        return PasswordHelper.VerifyPassword(password, storedHash);
+                            int id = reader.GetInt32(0);
+                            string fullName = reader.GetString(1) + " " + reader.GetString(2);
+                            string role = reader.GetString(3);
+                            string storedHash = reader.GetString(4);
+                            bool isActive = reader.GetBoolean(5);
+
+                            if (!PasswordHelper.VerifyPassword(password, storedHash)) return false;
+
+                            if (!isActive)
+                            {
+                                error = "This account has been deactivated. Please contact an administrator.";
+                                return false;
+                            }
+
+                            CurrentUser.EmployeeId = id;
+                            CurrentUser.FullName = fullName;
+                            CurrentUser.Role = role;
+                            return true;
+                        }
                     }
                 }
             }
             catch (SqlException ex)
             {
-                MessageBox.Show(
-                    "Unable to access the employee database.\n\n" + ex.Message,
-                    "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                error = "Unable to access the employee database.\n\n" + ex.Message;
                 return false;
             }
         }
-
         // --- Event Stubs Preserved for Designer Compatibility ---
         private void txtbUsername_TextChanged(object sender, EventArgs e) { }
         private void guna2HtmlLabel2_Click(object sender, EventArgs e) { }

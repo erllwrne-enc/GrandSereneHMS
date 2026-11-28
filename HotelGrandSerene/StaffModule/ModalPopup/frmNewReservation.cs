@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace HotelGrandSerene.StaffModule.ModalPopup
 {
@@ -19,7 +20,50 @@ namespace HotelGrandSerene.StaffModule.ModalPopup
         {
             InitializeComponent();
         }
+        private List<int> _holdIds = new List<int>();
+        private const decimal DownPaymentRate = 0.50m;   // 50% down payment - change if your group decides otherwise
 
+        private class HoldInfo
+        {
+            public int RoomID;
+            public DateTime CheckIn;
+            public DateTime CheckOut;
+            public int Guests;
+            public decimal PricePerNight;
+        }
+
+        public frmNewReservation(List<int> holdIds) : this()
+        {
+            if (holdIds != null) _holdIds = holdIds;
+        }
+
+        private static object DbVal(string s)
+        {
+            return string.IsNullOrWhiteSpace(s) ? (object)DBNull.Value : s.Trim();
+        }
+
+        // Deletes the holds this form was given (used when the staff cancels)
+        private void ReleaseHolds()
+        {
+            if (_holdIds.Count == 0) return;
+            try
+            {
+                using (SqlConnection conn = DatabaseHelper.GetConnection())
+                {
+                    conn.Open();
+                    string inList = string.Join(",", _holdIds.Select((id, i) => "@h" + i));
+                    using (SqlCommand cmd = new SqlCommand(
+                        "DELETE FROM TEMP_RESERVATION_HOLD WHERE TempHoldID IN (" + inList + ")", conn))
+                    {
+                        for (int i = 0; i < _holdIds.Count; i++)
+                            cmd.Parameters.AddWithValue("@h" + i, _holdIds[i]);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch { /* not critical: old holds are cleaned up automatically after 30 minutes */ }
+            _holdIds.Clear();
+        }
         private void frmNewReservation_Load(object sender, EventArgs e)
         {
             // 1. Setup Escaped Birthdate Placeholder
@@ -146,71 +190,188 @@ namespace HotelGrandSerene.StaffModule.ModalPopup
         // --- Confirm Staging Push & Cancel Actions ---
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            // 1. Basic Field Validation
+            // 1. Basic validation (same checks as before)
             if (string.IsNullOrWhiteSpace(txtFirstName?.Text) || string.IsNullOrWhiteSpace(txtLastName?.Text))
             {
-                MessageBox.Show("Please enter the customer's First and Last Name.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please enter the customer's First and Last Name.", "Validation Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(txtPhone?.Text))
+            {
+                MessageBox.Show("Please enter a contact phone number.", "Validation Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (_holdIds.Count == 0)
+            {
+                MessageBox.Show("No rooms were selected. Please start the reservation again.", "No Rooms",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(txtPhone?.Text))
-            {
-                MessageBox.Show("Please enter a contact phone number.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            string paymentMethod = cmbPaymentMethod?.SelectedItem?.ToString() ?? "Cash";
+            string paymentType = isFullPayment ? "Full Payment" : "Down Payment";
+            var reservationIds = new List<int>();
 
             try
             {
-                using (SqlConnection connection = DatabaseHelper.GetConnection())
+                using (SqlConnection conn = DatabaseHelper.GetConnection())
                 {
-                    connection.Open();
+                    conn.Open();
 
-                    string firstName = txtFirstName.Text.Trim();
-                    string lastName = txtLastName.Text.Trim();
-                    string contactNumber = txtPhone.Text.Trim();
-                    string email = txtEmail?.Text?.Trim() ?? "";
-                    string address = txtHomeAddress?.Text?.Trim() ?? "N/A";
-                    string idType = txtIDType?.Text?.Trim() ?? "Standard ID";
-                    string idNumber = txtIDNumber?.Text?.Trim() ?? "N/A";
-
-                    // Update existing rows in TEMP_RESERVATION_HOLD (created during Step 1) with customer info
-                    string updateHoldQuery = @"
-                        UPDATE TEMP_RESERVATION_HOLD 
-                        SET FirstName = @FirstName, 
-                            LastName = @LastName, 
-                            ContactNumber = @ContactNumber, 
-                            Email = @Email, 
-                            Address = @Address, 
-                            IDType = @IDType, 
-                            IDNumber = @IDNumber";
-
-                    using (SqlCommand cmdUpdate = new SqlCommand(updateHoldQuery, connection))
+                    // One transaction: either EVERYTHING is saved, or NOTHING is.
+                    using (SqlTransaction tx = conn.BeginTransaction())
                     {
-                        cmdUpdate.Parameters.AddWithValue("@FirstName", firstName);
-                        cmdUpdate.Parameters.AddWithValue("@LastName", lastName);
-                        cmdUpdate.Parameters.AddWithValue("@ContactNumber", contactNumber);
-                        cmdUpdate.Parameters.AddWithValue("@Email", email);
-                        cmdUpdate.Parameters.AddWithValue("@Address", address);
-                        cmdUpdate.Parameters.AddWithValue("@IDType", idType);
-                        cmdUpdate.Parameters.AddWithValue("@IDNumber", idNumber);
+                        try
+                        {
+                            // 2. Read the held rooms and their nightly price
+                            var holds = new List<HoldInfo>();
+                            string inList = string.Join(",", _holdIds.Select((id, i) => "@h" + i));
+                            string holdSql = @"
+                        SELECT h.RoomID, h.CheckInDate, h.CheckOutDate, h.NumberOfGuests, rt.PricePerNight
+                        FROM TEMP_RESERVATION_HOLD h
+                        JOIN ROOM r ON r.RoomID = h.RoomID
+                        JOIN ROOM_TYPE rt ON rt.RoomTypeID = r.RoomTypeID
+                        WHERE h.TempHoldID IN (" + inList + ")";
 
-                        cmdUpdate.ExecuteNonQuery();
+                            using (SqlCommand cmd = new SqlCommand(holdSql, conn, tx))
+                            {
+                                for (int i = 0; i < _holdIds.Count; i++)
+                                    cmd.Parameters.AddWithValue("@h" + i, _holdIds[i]);
+
+                                using (SqlDataReader rdr = cmd.ExecuteReader())
+                                {
+                                    while (rdr.Read())
+                                    {
+                                        holds.Add(new HoldInfo
+                                        {
+                                            RoomID = rdr.GetInt32(0),
+                                            CheckIn = rdr.GetDateTime(1),
+                                            CheckOut = rdr.GetDateTime(2),
+                                            Guests = rdr.GetInt32(3),
+                                            PricePerNight = rdr.GetDecimal(4)
+                                        });
+                                    }
+                                }
+                            }
+
+                            if (holds.Count != _holdIds.Count)
+                            {
+                                tx.Rollback();
+                                MessageBox.Show("The room hold has expired. Please select the rooms again.",
+                                    "Hold Expired", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                return;
+                            }
+
+                            // 3. Make sure nobody booked these rooms in the meantime
+                            foreach (HoldInfo h in holds)
+                            {
+                                using (SqlCommand cmd = new SqlCommand(@"
+                            SELECT COUNT(*) FROM RESERVATION WITH (UPDLOCK, HOLDLOCK)
+                            WHERE RoomID = @R AND Status <> 'Cancelled'
+                              AND CheckInDate < @Out AND CheckOutDate > @In", conn, tx))
+                                {
+                                    cmd.Parameters.AddWithValue("@R", h.RoomID);
+                                    cmd.Parameters.AddWithValue("@In", h.CheckIn);
+                                    cmd.Parameters.AddWithValue("@Out", h.CheckOut);
+
+                                    if ((int)cmd.ExecuteScalar() > 0)
+                                    {
+                                        tx.Rollback();
+                                        MessageBox.Show("One of the selected rooms was just booked by someone else. Please select again.",
+                                            "Room No Longer Available", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                        return;
+                                    }
+                                }
+                            }
+
+                            // 4. Save the customer
+                            int customerId;
+                            using (SqlCommand cmd = new SqlCommand(@"
+                        INSERT INTO CUSTOMER (FirstName, LastName, ContactNumber, Email, Address, IDType, IDNumber)
+                        OUTPUT INSERTED.CustomerID
+                        VALUES (@First, @Last, @Phone, @Email, @Address, @IDType, @IDNumber)", conn, tx))
+                            {
+                                cmd.Parameters.AddWithValue("@First", txtFirstName.Text.Trim());
+                                cmd.Parameters.AddWithValue("@Last", txtLastName.Text.Trim());
+                                cmd.Parameters.AddWithValue("@Phone", txtPhone.Text.Trim());
+                                cmd.Parameters.AddWithValue("@Email", DbVal(txtEmail?.Text));
+                                cmd.Parameters.AddWithValue("@Address", DbVal(txtHomeAddress?.Text));
+                                cmd.Parameters.AddWithValue("@IDType", DbVal(txtIDType?.Text));
+                                cmd.Parameters.AddWithValue("@IDNumber", DbVal(txtIDNumber?.Text));
+                                customerId = (int)cmd.ExecuteScalar();
+                            }
+
+                            // 5. One reservation + one payment per room
+                            foreach (HoldInfo h in holds)
+                            {
+                                int nights = (h.CheckOut - h.CheckIn).Days;
+                                decimal total = nights * h.PricePerNight;
+                                decimal amountPaid = isFullPayment ? total : Math.Round(total * DownPaymentRate, 2);
+
+                                int reservationId;
+                                using (SqlCommand cmd = new SqlCommand(@"
+                            INSERT INTO RESERVATION (CustomerID, RoomID, CheckInDate, CheckOutDate, NumberOfGuests, Status)
+                            OUTPUT INSERTED.ReservationID
+                            VALUES (@Cust, @Room, @In, @Out, @Guests, 'Confirmed')", conn, tx))
+                                {
+                                    cmd.Parameters.AddWithValue("@Cust", customerId);
+                                    cmd.Parameters.AddWithValue("@Room", h.RoomID);
+                                    cmd.Parameters.AddWithValue("@In", h.CheckIn);
+                                    cmd.Parameters.AddWithValue("@Out", h.CheckOut);
+                                    cmd.Parameters.AddWithValue("@Guests", h.Guests);
+                                    reservationId = (int)cmd.ExecuteScalar();
+                                }
+                                reservationIds.Add(reservationId);
+
+                                using (SqlCommand cmd = new SqlCommand(@"
+                            INSERT INTO PAYMENT (ReservationID, Amount, PaymentMethod, PaymentStatus, PaymentType)
+                            VALUES (@Res, @Amount, @Method, 'Paid', @Type)", conn, tx))
+                                {
+                                    cmd.Parameters.AddWithValue("@Res", reservationId);
+                                    cmd.Parameters.AddWithValue("@Amount", amountPaid);
+                                    cmd.Parameters.AddWithValue("@Method", paymentMethod);
+                                    cmd.Parameters.AddWithValue("@Type", paymentType);
+                                    cmd.ExecuteNonQuery();
+                                }
+                            }
+
+                            // 6. The holds have done their job - delete them
+                            using (SqlCommand cmd = new SqlCommand(
+                                "DELETE FROM TEMP_RESERVATION_HOLD WHERE TempHoldID IN (" + inList + ")", conn, tx))
+                            {
+                                for (int i = 0; i < _holdIds.Count; i++)
+                                    cmd.Parameters.AddWithValue("@h" + i, _holdIds[i]);
+                                cmd.ExecuteNonQuery();
+                            }
+
+                            tx.Commit();
+                        }
+                        catch
+                        {
+                            try { tx.Rollback(); } catch { }
+                            throw;   // the outer catch below shows the error message
+                        }
                     }
                 }
 
-                MessageBox.Show("Reservation details successfully thrown into the temporary hold table!", "Staged Successfully", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                _holdIds.Clear();
+                MessageBox.Show("Reservation confirmed!\nReservation number(s): " + string.Join(", ", reservationIds),
+                    "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An error occurred while pushing data to the temporary hold table:\n\n" + ex.Message,
-                                "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Could not save the reservation:\n\n" + ex.Message,
+                    "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            ReleaseHolds();
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
@@ -226,6 +387,7 @@ namespace HotelGrandSerene.StaffModule.ModalPopup
 
             if (result == DialogResult.Yes)
             {
+                ReleaseHolds();
                 this.DialogResult = DialogResult.Cancel;
                 this.Close();
             }
@@ -250,6 +412,10 @@ namespace HotelGrandSerene.StaffModule.ModalPopup
         private void txtIDType_TextChanged(object sender, EventArgs e) { }
         private void txtIDNumber_TextChanged(object sender, EventArgs e) { }
         private void txtHomeAddress_TextChanged(object sender, EventArgs e) { }
+
+        
+
+
         //endregion
     }
 }

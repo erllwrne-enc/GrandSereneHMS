@@ -19,7 +19,7 @@ namespace HotelGrandSerene.StaffModule.ModalPopup
         private ContextMenuStrip roomContextMenu;
 
         public List<string> SelectedRoomNumbers { get; private set; } = new List<string>();
-
+        public List<int> HoldIDs { get; private set; } = new List<int>();
         public frmRoomSelection() : this(DateTime.Now.Date, DateTime.Now.Date.AddDays(1), 1, 1, 0) { }
 
         public frmRoomSelection(DateTime checkIn, DateTime checkOut, int rooms, int adults, int children)
@@ -253,15 +253,19 @@ namespace HotelGrandSerene.StaffModule.ModalPopup
                 if (row.Cells["colRoom"]?.Value != null) SelectedRoomNumbers.Add(row.Cells["colRoom"].Value.ToString());
 
             int totalGuests = adultsCount + childrenCount;
+            HoldIDs.Clear();
             try
             {
                 using (SqlConnection conn = DatabaseHelper.GetConnection())
                 {
                     conn.Open();
-                   // using (SqlCommand cmdClear = new SqlCommand("DELETE FROM TEMP_RESERVATION_HOLD", conn))
-                  //  {
-                       // cmdClear.ExecuteNonQuery();
-                   // }
+
+                    // Throw away holds that were abandoned more than 30 minutes ago
+                    using (SqlCommand cmdClean = new SqlCommand(
+                        "DELETE FROM TEMP_RESERVATION_HOLD WHERE CreatedAt < DATEADD(MINUTE, -30, GETDATE())", conn))
+                    {
+                        cmdClean.ExecuteNonQuery();
+                    }
 
                     foreach (string roomNum in SelectedRoomNumbers)
                     {
@@ -275,19 +279,21 @@ namespace HotelGrandSerene.StaffModule.ModalPopup
 
                         if (roomID > 0)
                         {
-                            using (SqlCommand cmdIns = new SqlCommand("INSERT INTO TEMP_RESERVATION_HOLD (RoomID, CheckInDate, CheckOutDate, NumberOfGuests) VALUES (@RID, @In, @Out, @Guests)", conn))
+                            using (SqlCommand cmdIns = new SqlCommand(
+                                @"INSERT INTO TEMP_RESERVATION_HOLD (RoomID, CheckInDate, CheckOutDate, NumberOfGuests)
+                      OUTPUT INSERTED.TempHoldID
+                      VALUES (@RID, @In, @Out, @Guests)", conn))
                             {
                                 cmdIns.Parameters.AddWithValue("@RID", roomID);
                                 cmdIns.Parameters.AddWithValue("@In", checkInDate);
                                 cmdIns.Parameters.AddWithValue("@Out", checkOutDate);
                                 cmdIns.Parameters.AddWithValue("@Guests", totalGuests);
-                                cmdIns.ExecuteNonQuery();
+                                HoldIDs.Add((int)cmdIns.ExecuteScalar());   // remember this hold's ID
                             }
                         }
                     }
                 }
 
-                // Return OK to dashboard so it triggers Step 2
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
