@@ -158,7 +158,7 @@
             this.btnSignin.TabIndex = 8;
             this.btnSignin.Text = "Sign in";
             this.btnSignin.Click += new System.EventHandler(this.btnSignin_Click);
-            this.btnSignin.Enter += new System.EventHandler(this.btnSignin_Click);
+            //this.btnSignin.Enter += new System.EventHandler(this.btnSignin_Click);
             // 
             // guna2HtmlLabel5
             // 

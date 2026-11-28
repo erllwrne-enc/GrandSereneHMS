@@ -2,6 +2,8 @@
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using GrandSereneHotel.DatabaseAccess;
+using System.Data.SqlClient;
 
 namespace HotelGrandSerene.CustomerModule.ucCustomerpnl
 {
@@ -36,7 +38,7 @@ namespace HotelGrandSerene.CustomerModule.ucCustomerpnl
 
             // 4. Dimensions and Colors matching ucFinance
             dgvGuests.RowTemplate.Height = 52;
-            dgvGuests.ScrollBars = ScrollBars.None;
+            dgvGuests.ScrollBars = ScrollBars.Vertical;
 
             dgvGuests.GridColor = Color.FromArgb(231, 229, 255);
             dgvGuests.DefaultCellStyle.ForeColor = Color.FromArgb(30, 41, 59);
@@ -48,17 +50,52 @@ namespace HotelGrandSerene.CustomerModule.ucCustomerpnl
             dgvGuests.CellFormatting -= dgvGuests_CellFormatting;
             dgvGuests.CellFormatting += dgvGuests_CellFormatting;
         }
-
+        private const int VipMinStays = 5;   // a guest is "VIP" after this many stays - your group can change it
         private void PopulateData()
         {
             dgvGuests.Rows.Clear();
 
-            AddGuestRow("Sydney Chua", "demo@email.com", "09123456789", "101", "Aug 14", "");
-            AddGuestRow("Shairyll Licunan", "demo@email.com", "09123456789", "205", "Aug 14", "VIP");
-            AddGuestRow("Josh Herrera", "demo@email.com", "09123456789", "312", "Aug 14", "VIP");
-            AddGuestRow("Nathaniel Lalota", "demo@email.com", "09123456789", "418", "Aug 14", "");
-            AddGuestRow("Ana Laboc", "demo@email.com", "09123456789", "214", "Aug 11", "");
-            AddGuestRow("Ephraim Perlas", "demo@email.com", "09123456789", "109", "Aug 14", "");
+            try
+            {
+                using (SqlConnection conn = DatabaseHelper.GetConnection())
+                {
+                    conn.Open();
+
+                    string sql = @"
+                SELECT CONCAT(c.FirstName, ' ', c.LastName) AS GuestName,
+                       c.Email, c.ContactNumber,
+                       lr.RoomNumber, lr.CheckInDate,
+                       st.Stays
+                FROM CUSTOMER c
+                OUTER APPLY (SELECT TOP 1 rm.RoomNumber, r.CheckInDate
+                             FROM RESERVATION r JOIN ROOM rm ON rm.RoomID = r.RoomID
+                             WHERE r.CustomerID = c.CustomerID AND r.Status <> 'Cancelled'
+                             ORDER BY r.CheckInDate DESC, r.ReservationID DESC) lr
+                OUTER APPLY (SELECT COUNT(*) AS Stays FROM RESERVATION r
+                             WHERE r.CustomerID = c.CustomerID AND r.Status <> 'Cancelled') st
+                ORDER BY c.CustomerID DESC";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    using (SqlDataReader r = cmd.ExecuteReader())
+                    {
+                        while (r.Read())
+                        {
+                            AddGuestRow(
+                                r.GetString(0),
+                                r.IsDBNull(1) ? "" : r.GetString(1),
+                                r.IsDBNull(2) ? "" : r.GetString(2),
+                                r.IsDBNull(3) ? "" : r.GetString(3),
+                                r.IsDBNull(4) ? "" : r.GetDateTime(4).ToString("MMM dd, yyyy"),
+                                r.GetInt32(5) >= VipMinStays ? "VIP" : "");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Could not load guests:\n\n" + ex.Message,
+                    "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
             dgvGuests.ClearSelection();
         }

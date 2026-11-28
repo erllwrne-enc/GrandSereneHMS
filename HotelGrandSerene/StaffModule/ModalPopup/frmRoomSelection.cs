@@ -32,7 +32,7 @@ namespace HotelGrandSerene.StaffModule.ModalPopup
             childrenCount = children;
 
             dgvRoomStatus.CellFormatting += dgvRoomStatus_CellFormatting;
-            dgvRoomStatus.SelectionChanged += dgvRoomStatus_SelectionChanged;
+            //dgvRoomStatus.SelectionChanged += dgvRoomStatus_SelectionChanged;
             SetupContextMenu();
         }
 

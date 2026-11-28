@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using GrandSereneHotel.DatabaseAccess;
+using System.Data.SqlClient;
 
 namespace HotelGrandSerene.DashboardModule.UserControlNavigation
 {
@@ -34,7 +36,7 @@ namespace HotelGrandSerene.DashboardModule.UserControlNavigation
 
             // Row heights for 345px total height
             dgvTransactions.RowTemplate.Height = 48;
-            dgvTransactions.ScrollBars = ScrollBars.None;
+            dgvTransactions.ScrollBars = ScrollBars.Vertical;
 
             // Ensure text color is dark solid slate (not transparent or white)
             dgvTransactions.DefaultCellStyle.ForeColor = Color.FromArgb(30, 41, 59);
@@ -47,32 +49,88 @@ namespace HotelGrandSerene.DashboardModule.UserControlNavigation
             dgvTransactions.CellFormatting += dgvTransactions_CellFormatting;
         }
 
+        private static string Peso(decimal amount)
+        {
+            return "\u20B1" + amount.ToString("N2");
+        }
         private void PopulateData()
         {
             dgvTransactions.Rows.Clear();
 
-            string[] guests = { "Sydney Chua", "Shairyll Licunan", "Nathaniel Lalota", "Josh Herrera", "Ana Laboc", "Ephraim Perlas" };
-            string[] roomTypes = { "Standard", "Deluxe", "Suite", "Executive" };
-            string[] transactionTypes = { "Room Stay", "Room Stay", "Room Stay", "Dining", "Service" };
-            int[] roomNumbers = { 101, 109, 205, 214, 312, 418 };
-
-            for (int i = 0; i < 6; i++)
+            try
             {
-                string guest = guests[i % guests.Length];
-                string room = $"{roomNumbers[i % roomNumbers.Length]} {roomTypes[i % roomTypes.Length]}";
-                string date = $"Aug {14 - (i / 2)}";
-                string type = transactionTypes[_rand.Next(transactionTypes.Length)];
-                string amount = $"${_rand.Next(20, 130) * 10:N0}";
+                using (SqlConnection conn = DatabaseHelper.GetConnection())
+                {
+                    conn.Open();
 
-                // Explicitly insert into the 5 columns by index
-                int rowIndex = dgvTransactions.Rows.Add();
-                DataGridViewRow row = dgvTransactions.Rows[rowIndex];
+                    // ---- Recent transactions (every payment, newest first) ----
+                    string listSql = @"
+                SELECT TOP 100
+                       CONCAT(c.FirstName, ' ', c.LastName),
+                       CONCAT(rm.RoomNumber, ' ', REPLACE(rt.TypeName, ' Room', '')),
+                       p.PaymentDate, p.PaymentType, p.Amount
+                FROM PAYMENT p
+                JOIN RESERVATION r ON r.ReservationID = p.ReservationID
+                JOIN CUSTOMER c    ON c.CustomerID    = r.CustomerID
+                JOIN ROOM rm       ON rm.RoomID       = r.RoomID
+                JOIN ROOM_TYPE rt  ON rt.RoomTypeID   = rm.RoomTypeID
+                ORDER BY p.PaymentDate DESC, p.PaymentID DESC";
 
-                row.Cells[0].Value = guest;
-                row.Cells[1].Value = room;
-                row.Cells[2].Value = date;
-                row.Cells[3].Value = type;
-                row.Cells[4].Value = amount;
+                    using (SqlCommand cmd = new SqlCommand(listSql, conn))
+                    using (SqlDataReader r = cmd.ExecuteReader())
+                    {
+                        while (r.Read())
+                        {
+                            int rowIndex = dgvTransactions.Rows.Add();
+                            DataGridViewRow row = dgvTransactions.Rows[rowIndex];
+                            row.Cells[0].Value = r.GetString(0);                              // guest
+                            row.Cells[1].Value = r.GetString(1);                              // room
+                            row.Cells[2].Value = r.GetDateTime(2).ToString("MMM dd, yyyy");   // date
+                            row.Cells[3].Value = r.IsDBNull(3) ? "" : r.GetString(3);         // type
+                            row.Cells[4].Value = Peso(r.GetDecimal(4));                       // amount
+                        }
+                    }
+
+                    // ---- MONTHLY REVENUE: payments received this month ----
+                    using (SqlCommand cmd = new SqlCommand(@"
+                SELECT ISNULL(SUM(Amount), 0) FROM PAYMENT
+                WHERE PaymentStatus = 'Paid'
+                  AND YEAR(PaymentDate) = YEAR(GETDATE()) AND MONTH(PaymentDate) = MONTH(GETDATE())", conn))
+                    {
+                        guna2HtmlLabel4.Text = Peso(Convert.ToDecimal(cmd.ExecuteScalar()));
+                    }
+
+                    // ---- OUTSTANDING: unpaid balance on bookings that are not finished/cancelled ----
+                    using (SqlCommand cmd = new SqlCommand(@"
+                SELECT ISNULL(SUM(CASE WHEN t.Total - t.Paid > 0 THEN t.Total - t.Paid ELSE 0 END), 0)
+                FROM (SELECT DATEDIFF(DAY, r.CheckInDate, r.CheckOutDate) * rt.PricePerNight AS Total,
+                             ISNULL((SELECT SUM(p.Amount) FROM PAYMENT p
+                                     WHERE p.ReservationID = r.ReservationID AND p.PaymentStatus = 'Paid'), 0) AS Paid
+                      FROM RESERVATION r
+                      JOIN ROOM rm      ON rm.RoomID     = r.RoomID
+                      JOIN ROOM_TYPE rt ON rt.RoomTypeID = rm.RoomTypeID
+                      WHERE r.Status IN ('Pending', 'Confirmed', 'Checked-In')) t", conn))
+                    {
+                        guna2HtmlLabel2.Text = Peso(Convert.ToDecimal(cmd.ExecuteScalar()));
+                    }
+
+                    // ---- AVG. DAILY RATE: average price per booked night ----
+                    using (SqlCommand cmd = new SqlCommand(@"
+                SELECT ISNULL(SUM(DATEDIFF(DAY, r.CheckInDate, r.CheckOutDate) * rt.PricePerNight)
+                              / NULLIF(SUM(DATEDIFF(DAY, r.CheckInDate, r.CheckOutDate)), 0), 0)
+                FROM RESERVATION r
+                JOIN ROOM rm      ON rm.RoomID     = r.RoomID
+                JOIN ROOM_TYPE rt ON rt.RoomTypeID = rm.RoomTypeID
+                WHERE r.Status <> 'Cancelled'", conn))
+                    {
+                        guna2HtmlLabel5.Text = Peso(Convert.ToDecimal(cmd.ExecuteScalar()));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Could not load finance data:\n\n" + ex.Message,
+                    "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             dgvTransactions.ClearSelection();
