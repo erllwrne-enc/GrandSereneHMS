@@ -51,12 +51,12 @@ namespace HotelGrandSerene
             // Needs:   using GrandSereneHotel.DatabaseAccess;   at the top of Program.cs
             // =====================================================================
 
-            using (var c = DatabaseHelper.GetConnection())
-            {
-                c.Open();
-                using (var cmd = new System.Data.SqlClient.SqlCommand("SELECT @@SERVERNAME + '  /  ' + DB_NAME()", c))
-                    MessageBox.Show("The app is using:\n\n" + cmd.ExecuteScalar(), "Diagnostic");
-            }
+          //  using (var c = DatabaseHelper.GetConnection())
+          //  {
+          //      c.Open();
+          //      using (var cmd = new System.Data.SqlClient.SqlCommand("SELECT @@SERVERNAME + '  /  ' + DB_NAME()", c))
+          //          MessageBox.Show("The app is using:\n\n" + cmd.ExecuteScalar(), "Diagnostic");
+          //  }
 
             // Only show the "create first admin" screen when there are NO accounts at all
             // (a fallback in case 03_seed_admin.sql was never run).

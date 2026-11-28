@@ -13,6 +13,9 @@ namespace HotelGrandSerene.DashboardModule.ModalPopup
 {
     public partial class frmNewCheckin : Form
     {
+        // The reservation that was found (null if the window was cancelled)
+        public StayInfo FoundStay { get; private set; }
+
         public frmNewCheckin()
         {
             InitializeComponent();
@@ -29,17 +32,25 @@ namespace HotelGrandSerene.DashboardModule.ModalPopup
             guna2Elipse1.TargetControl = this;
             guna2Elipse1.BorderRadius = 20;
 
-            // 4. Start with empty boxes and a hint instead of the sample text
+            // 4. The designer pre-fills all three boxes with sample text
+            //    ("ex. DTR-12342", "ex. Dela Cruz", "ex. Juan"). Clear them and use hints instead.
             guna2TextBox1.Text = "";
             guna2TextBox1.PlaceholderText = "e.g. R-10001";
+            guna2TextBox2.Text = "";
+            guna2TextBox2.PlaceholderText = "e.g. Dela Cruz";
+            guna2TextBox3.Text = "";
+            guna2TextBox3.PlaceholderText = "e.g. Juan";
 
-            // 5. Enter = confirm, Esc = cancel (this window has no close button)
+            guna2Button1.Text = "Load Reservation";
+
+            // 5. Enter = load, Esc = cancel (this window has no close button)
             this.AcceptButton = guna2Button1;
             this.KeyPreview = true;
             this.KeyDown += (s, e) =>
             {
                 if (e.KeyCode == Keys.Escape) this.Close();
             };
+            this.Shown += (s, e) => guna2TextBox1.Focus();
         }
 
         private void guna2Button1_Click(object sender, EventArgs e)
@@ -76,36 +87,21 @@ namespace HotelGrandSerene.DashboardModule.ModalPopup
                     return;
                 }
 
-                // Outside the booked dates? Let the staff decide (handy for demos too).
-                DateTime today = DateTime.Today;
-                if (today < info.CheckIn.Date || today >= info.CheckOut.Date)
+                if (info.Status != "Confirmed" && info.Status != "Pending")
                 {
-                    DialogResult go = MessageBox.Show(
-                        "This reservation is for " + info.CheckIn.ToString("MMM dd, yyyy") + " to " +
-                        info.CheckOut.ToString("MMM dd, yyyy") + ".\nToday is outside that period.\n\nCheck in anyway?",
-                        "Dates Don't Match", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (go != DialogResult.Yes) return;
-                }
-
-                string error = StayService.CheckIn(reservationId);
-                if (error != null)
-                {
-                    MessageBox.Show(error, "Check-in", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("This reservation can't be checked in (status: " + info.Status + ").",
+                        "Check-in", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                MessageBox.Show(
-                    "Check-in complete!\n\nGuest: " + info.GuestName +
-                    "\nRoom: " + info.RoomNumber + " (" + info.TypeName + ")" +
-                    "\nBalance due at check-out: \u20B1" + info.Balance.ToString("N2"),
-                    "Checked In", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                // Found: hand it to the Dashboard. Nothing is saved here.
+                FoundStay = info;
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Could not check in:\n\n" + ex.Message,
+                MessageBox.Show("Could not look up the reservation:\n\n" + ex.Message,
                     "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

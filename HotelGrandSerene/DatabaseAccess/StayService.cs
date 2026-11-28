@@ -1,4 +1,12 @@
-﻿using System;
+﻿// All the database work for checking guests in and out lives here, so the
+// dialogs stay small. Both operations run as ONE transaction (all or nothing).
+//
+// Status words used (keep the whole team on these):
+//   Reservation: Confirmed -> Checked-In -> Checked-Out        (or Cancelled)
+//   Room:        Available -> Occupied -> Cleaning -> Available
+//   (Housekeeping marks a Cleaning room as Available from the Rooms tab.)
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +28,7 @@ namespace GrandSereneHotel.DatabaseAccess
         public string Status = "";
         public decimal Total;     // nights x price per night
         public decimal Paid;      // payments already recorded as 'Paid'
+        public string PaymentMethod = "";   // method of the most recent payment ("" if none)
 
         public decimal Balance { get { return Math.Max(0m, Total - Paid); } }
         public string GuestName { get { return FirstName + " " + LastName; } }
@@ -53,7 +62,10 @@ namespace GrandSereneHotel.DatabaseAccess
                        c.FirstName, c.LastName, r.CheckInDate, r.CheckOutDate, r.Status,
                        DATEDIFF(DAY, r.CheckInDate, r.CheckOutDate) * rt.PricePerNight AS Total,
                        ISNULL((SELECT SUM(p.Amount) FROM PAYMENT p
-                               WHERE p.ReservationID = r.ReservationID AND p.PaymentStatus = 'Paid'), 0) AS Paid
+                               WHERE p.ReservationID = r.ReservationID AND p.PaymentStatus = 'Paid'), 0) AS Paid,
+                       ISNULL((SELECT TOP 1 p.PaymentMethod FROM PAYMENT p
+                               WHERE p.ReservationID = r.ReservationID
+                               ORDER BY p.PaymentID DESC), '') AS PayMethod
                 FROM RESERVATION r
                 JOIN CUSTOMER  c  ON c.CustomerID  = r.CustomerID
                 JOIN ROOM      rm ON rm.RoomID     = r.RoomID
@@ -78,7 +90,8 @@ namespace GrandSereneHotel.DatabaseAccess
                         CheckOut = r.GetDateTime(7),
                         Status = r.GetString(8),
                         Total = r.GetDecimal(9),
-                        Paid = r.GetDecimal(10)
+                        Paid = r.GetDecimal(10),
+                        PaymentMethod = r.GetString(11)
                     };
                 }
             }

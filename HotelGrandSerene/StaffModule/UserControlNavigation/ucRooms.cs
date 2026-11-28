@@ -3,6 +3,8 @@ using System;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Collections.Generic;
+using System.Data;
 
 namespace HotelGrandSerene.DashboardModule.UserControlNavigation
 {
@@ -10,7 +12,7 @@ namespace HotelGrandSerene.DashboardModule.UserControlNavigation
     {
         private ContextMenuStrip cmsRoomStatus;
         private string selectedRoomNumber = string.Empty;
-
+        private readonly List<DateTime?> _dateOptions = new List<DateTime?>();
         public ucRooms()
         {
             InitializeComponent();
@@ -19,9 +21,7 @@ namespace HotelGrandSerene.DashboardModule.UserControlNavigation
             dgvRoomStatus.CellFormatting -= dgvRoomStatus_CellFormatting;
             dgvRoomStatus.CellFormatting += dgvRoomStatus_CellFormatting;
 
-            // Wire MouseClick for right-click context menu
-            dgvRoomStatus.CellMouseClick += dgvRoomStatus_CellMouseClick;
-
+            
             InitializeStatusContextMenu();
         }
 
@@ -40,6 +40,7 @@ namespace HotelGrandSerene.DashboardModule.UserControlNavigation
                 cmbRoomStatus.Items.Add("Available");
                 cmbRoomStatus.Items.Add("Occupied");
                 cmbRoomStatus.Items.Add("Reserved");
+                cmbRoomStatus.Items.Add("Cleaning");
                 cmbRoomStatus.Items.Add("Maintenance");
                 cmbRoomStatus.SelectedIndex = 0;
             }
@@ -76,9 +77,35 @@ namespace HotelGrandSerene.DashboardModule.UserControlNavigation
                     }
                 }
                 cmbRoomType.SelectedIndex = 0;
+                if (guna2ComboBox3.Items.Count == 0)
+                {
+                    DateTime today = DateTime.Today;
+
+                    guna2ComboBox3.Items.Add("Today (live status)");
+                    _dateOptions.Add(null);
+
+                    guna2ComboBox3.Items.Add("Tomorrow");
+                    _dateOptions.Add(today.AddDays(1));
+
+                    for (int i = 2; i <= 30; i++)
+                    {
+                        DateTime d = today.AddDays(i);
+                        guna2ComboBox3.Items.Add(d.ToString("ddd, MMM dd"));
+                        _dateOptions.Add(d);
+                    }
+
+                    guna2ComboBox3.SelectedIndex = 0;
+                    guna2ComboBox3.SelectedIndexChanged += (s, e) => ApplyFilters();
+                }
             }
         }
 
+        private DateTime? SelectedFilterDate()
+        {
+            int i = guna2ComboBox3.SelectedIndex;
+            if (i <= 0 || i >= _dateOptions.Count) return null;   // 0 = Today (live)
+            return _dateOptions[i];
+        }
         // --- Multi-Filter Triggers ---
 
         private void txtbRoomFilter_KeyDown(object sender, KeyEventArgs e)
@@ -111,16 +138,16 @@ namespace HotelGrandSerene.DashboardModule.UserControlNavigation
             string selectedStatus = cmbRoomStatus.SelectedItem?.ToString() ?? "All Statuses";
             if (selectedStatus == "All Statuses") selectedStatus = "";
 
-            LoadRoomData(roomNumFilter, selectedType, selectedStatus);
+            LoadRoomData(roomNumFilter, selectedType, selectedStatus, SelectedFilterDate());
         }
 
         // --- Core Data Loading Procedure ---
 
-        public void LoadRoomData(string filterRoomNumber = "", string filterType = "", string filterStatus = "")
+        public void LoadRoomData(string filterRoomNumber = "", string filterType = "", string filterStatus = "", DateTime? forDate = null)
         {
             if (dgvRoomStatus.InvokeRequired)
             {
-                this.Invoke(new Action(() => LoadRoomData(filterRoomNumber, filterType, filterStatus)));
+                this.Invoke(new Action(() => LoadRoomData(filterRoomNumber, filterType, filterStatus, forDate)));
                 return;
             }
 
@@ -137,26 +164,37 @@ namespace HotelGrandSerene.DashboardModule.UserControlNavigation
                 {
                     connection.Open();
 
-                    // SQL Query matching text filter, type dropdown, and status dropdown
+                    // EffStatus: for "Today" it is the real room status. For another date it is worked
+                    // out from the reservations (Reserved / Available) - Maintenance rooms stay as they are.
                     string query = @"
-                        SELECT 
-                            r.RoomNumber, 
-                            rt.TypeName, 
-                            r.Floor, 
-                            r.Status, 
-                            rt.PricePerNight
-                        FROM ROOM r
-                        INNER JOIN ROOM_TYPE rt ON r.RoomTypeID = rt.RoomTypeID
-                        WHERE (@FilterNum = '' OR r.RoomNumber LIKE '%' + @FilterNum + '%')
-                          AND (@FilterType = '' OR rt.TypeName = @FilterType)
-                          AND (@FilterStatus = '' OR r.Status = @FilterStatus)
-                        ORDER BY r.RoomNumber ASC";
+                SELECT q.RoomNumber, q.TypeName, q.Floor, q.EffStatus AS Status, q.PricePerNight
+                FROM (
+                    SELECT r.RoomNumber, rt.TypeName, r.Floor, rt.PricePerNight,
+                           CASE
+                               WHEN @ForDate IS NULL THEN r.Status
+                               WHEN r.Status = 'Maintenance' THEN 'Maintenance'
+                               WHEN EXISTS (SELECT 1 FROM RESERVATION x
+                                            WHERE x.RoomID = r.RoomID AND x.Status <> 'Cancelled'
+                                              AND x.CheckInDate <= @ForDate AND x.CheckOutDate > @ForDate)
+                                    THEN 'Reserved'
+                               ELSE 'Available'
+                           END AS EffStatus
+                    FROM ROOM r
+                    INNER JOIN ROOM_TYPE rt ON r.RoomTypeID = rt.RoomTypeID
+                    WHERE (@FilterNum = '' OR r.RoomNumber LIKE '%' + @FilterNum + '%')
+                      AND (@FilterType = '' OR rt.TypeName = @FilterType)
+                ) q
+                WHERE (@FilterStatus = '' OR q.EffStatus = @FilterStatus)
+                ORDER BY q.RoomNumber ASC";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@FilterNum", filterRoomNumber);
                         command.Parameters.AddWithValue("@FilterType", filterType);
                         command.Parameters.AddWithValue("@FilterStatus", filterStatus);
+
+                        SqlParameter dateParam = command.Parameters.Add("@ForDate", SqlDbType.Date);
+                        dateParam.Value = forDate.HasValue ? (object)forDate.Value.Date : DBNull.Value;
 
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
@@ -211,20 +249,32 @@ namespace HotelGrandSerene.DashboardModule.UserControlNavigation
             ToolStripMenuItem itemOccupied = new ToolStripMenuItem("Mark as Occupied");
             ToolStripMenuItem itemReserved = new ToolStripMenuItem("Mark as Reserved");
             ToolStripMenuItem itemMaintenance = new ToolStripMenuItem("Mark as Maintenance");
+            ToolStripMenuItem itemCleaning = new ToolStripMenuItem("Mark as Cleaning");
 
             itemAvailable.Click += (s, e) => UpdateSelectedRoomStatus("Available");
             itemOccupied.Click += (s, e) => UpdateSelectedRoomStatus("Occupied");
             itemReserved.Click += (s, e) => UpdateSelectedRoomStatus("Reserved");
             itemMaintenance.Click += (s, e) => UpdateSelectedRoomStatus("Maintenance");
+            itemCleaning.Click += (s, e) => UpdateSelectedRoomStatus("Cleaning");
 
             cmsRoomStatus.Items.Add(itemAvailable);
             cmsRoomStatus.Items.Add(itemOccupied);
             cmsRoomStatus.Items.Add(itemReserved);
             cmsRoomStatus.Items.Add(itemMaintenance);
+            cmsRoomStatus.Items.Add(itemCleaning);
         }
+        
 
         private void dgvRoomStatus_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+            //      (a future date is a forecast, so changing the real status there would be wrong)
+            if (SelectedFilterDate() != null)
+            {
+                if (e.Button == MouseButtons.Right)
+                    MessageBox.Show("Switch the date filter back to \"Today\" to change a room's status.",
+                        "Date View", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
             if (e.Button == MouseButtons.Right && e.RowIndex >= 0)
             {
                 dgvRoomStatus.ClearSelection();
