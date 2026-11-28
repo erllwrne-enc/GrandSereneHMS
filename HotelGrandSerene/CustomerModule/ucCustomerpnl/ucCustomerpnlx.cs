@@ -12,14 +12,51 @@ namespace HotelGrandSerene.CustomerModule.ucCustomerpnl
 {
     public partial class ucCustomerpnlx : UserControl
     {
+
         // Internal counter values
         private int roomsCount = 1;
         private int adultsCount = 1;
         private int childrenCount = 0;
 
+        // Gets the selected check-in date from the date picker (date for c-i/c-o)
+        public DateTime CheckInDate => guna2DateTimePicker1.Value.Date;
+
+        // Gets the selected check-out date from the date picker (date for c-i/c-o)
+        public DateTime CheckOutDate => guna2DateTimePicker2.Value.Date;
+
+        // Gets the current number of selected rooms.
+        public int RoomsCount => roomsCount;
+
+        // Gets the current number of adults.
+        public int AdultsCount => adultsCount;
+
+        // Gets the current number of children.
+        public int ChildrenCount => childrenCount;
+
+        //event that notifies the main form when the customer clicks BOOK NOW (the yellow button BOOK NOW)
+        public event EventHandler BookNowClicked;
+
         public ucCustomerpnlx()
         {
             InitializeComponent();
+
+            // Get today actual date (date for c-i/c-o)
+            DateTime today = DateTime.Today;
+
+            // Prevent the customer from selecting a check-in date before today (date for c-i/c-o)
+            guna2DateTimePicker1.MinDate = today;
+
+            // Prevent the customer from selecting a check-out date before today (date for c-i/c-o)
+            guna2DateTimePicker2.MinDate = today;
+
+            // Set the default check-in date to today (date for c-i/c-o)
+            guna2DateTimePicker1.Value = today;
+
+            // Set the default check-out date to tomorrow (date for c-i/c-o)
+            guna2DateTimePicker2.Value = today.AddDays(1);
+
+            // Listen for changes whenever the customer selects a new check-in date (date for c-i/c-o)
+            guna2DateTimePicker1.ValueChanged += guna2DateTimePicker1_ValueChanged;
 
             // Set default visibility & initial display state
             pnlGuestCountDrop.Visible = false;
@@ -129,9 +166,60 @@ namespace HotelGrandSerene.CustomerModule.ucCustomerpnl
 
         }
 
-        private void btnBookproceed_Click(object sender, EventArgs e)
+        private void btnBookproceed_Click(object sender, EventArgs e) // This method runs when the customer clicks the BOOK NOW button (the yellow button BOOK NOW)
         {
-            
+            // Retrieve the selected check-in date without the time component.
+            DateTime checkIn = guna2DateTimePicker1.Value.Date;
+
+            // Retrieve the selected check-out date without the time component.
+            DateTime checkOut = guna2DateTimePicker2.Value.Date;
+
+            // Make sure the check-in date is not earlier than today.
+            if (checkIn < DateTime.Today)
+            {
+                MessageBox.Show(
+                    "Check-in date cannot be earlier than today.",
+                    "Invalid Check-in Date",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+
+                return; // Stop the booking process if the date is invalid.
+            }
+
+            // Make sure checkout is later than check-in.
+            if (checkOut <= checkIn)
+            {
+                MessageBox.Show(
+                    "Check-out date must be later than check-in date.",
+                    "Invalid Check-out Date",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+
+                return; // Stop the booking process if the date is invalid.
+            }
+
+            // Notify the main form that the customer wants to proceed.
+            BookNowClicked?.Invoke(this, EventArgs.Empty);
+        }
+        private void guna2DateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            // Retrieve the newly selected check-in date.
+            DateTime checkIn = guna2DateTimePicker1.Value.Date;
+
+            // The checkout date must be at least one day after check-in.
+            DateTime minimumCheckOut = checkIn.AddDays(1);
+
+            // Check whether the current checkout date is invalid.
+            if (guna2DateTimePicker2.Value.Date < minimumCheckOut)
+            {
+                // Automatically move checkout to the day after check-in.
+                guna2DateTimePicker2.Value = minimumCheckOut;
+            }
+
+            // Update the earliest selectable checkout date.
+            guna2DateTimePicker2.MinDate = minimumCheckOut;
         }
     }
 }
