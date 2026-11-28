@@ -6,3 +6,11 @@ seed_admin.sql
 
 DB_HMS.sql
 - used to create the database
+
+roles_fix.sql
+- used to fix roles in database
+
+Status words used (keep the whole team on these):
+   Reservation: Confirmed -> Checked-In -> Checked-Out        (or Cancelled)
+   Room:        Available -> Occupied -> Cleaning -> Available
+   (Housekeeping marks a Cleaning room as Available from the Rooms tab.)
