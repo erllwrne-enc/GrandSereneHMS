@@ -6,3 +6,6 @@ seed_admin.sql
 
 DB_HMS.sql
 - used to create the database
+
+roles_fix.sql
+- used to fix roles in database
